@@ -119,7 +119,7 @@ export async function POST(req: Request) {
 
         // Create Gemini model
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash",
+            model: "gemini-2.5-flash",
             systemInstruction: `${SYSTEM_PROMPT}\n\n--- USER DATA ---\n${userContext}`,
         });
 
