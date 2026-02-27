@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Save, DollarSign, Check } from "lucide-react";
+import { toast } from "sonner";
 
 const CATEGORIES = [
     { key: "groceries", label: "Groceries", emoji: "🛒", max: 2000, step: 50 },
@@ -16,6 +17,26 @@ const CATEGORIES = [
     { key: "transit", label: "Transit & Rideshare", emoji: "🚇", max: 500, step: 25 },
     { key: "other", label: "Everything Else", emoji: "💳", max: 3000, step: 50 },
 ];
+
+function SpendingSkeleton() {
+    return (
+        <div className="grid gap-4 md:grid-cols-2">
+            {[1, 2, 3, 4].map((i) => (
+                <Card key={i} className="border-gray-200 bg-white shadow-sm">
+                    <CardHeader className="pb-3">
+                        <div className="flex items-center justify-between">
+                            <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+                            <div className="h-6 w-12 animate-pulse rounded bg-gray-100" />
+                        </div>
+                    </CardHeader>
+                    <CardContent className="pb-4">
+                        <div className="h-2 w-full animate-pulse rounded bg-gray-100" />
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+    );
+}
 
 export function SpendingProfileClient() {
     const [spending, setSpending] = useState<Record<string, number>>({
@@ -29,6 +50,7 @@ export function SpendingProfileClient() {
     const fetchProfile = useCallback(async () => {
         try {
             const res = await fetch("/api/spending-profile");
+            if (!res.ok) throw new Error("Failed to load profile");
             const data = await res.json();
             if (data.profile) {
                 setSpending({
@@ -44,6 +66,7 @@ export function SpendingProfileClient() {
             }
         } catch (err) {
             console.error("Failed to load spending profile:", err);
+            toast.error("Failed to load spending profile");
         } finally {
             setLoading(false);
         }
@@ -60,12 +83,13 @@ export function SpendingProfileClient() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(spending),
             });
-            if (res.ok) {
-                setSaved(true);
-                setTimeout(() => setSaved(false), 3000);
-            }
+            if (!res.ok) throw new Error("Failed to save");
+            setSaved(true);
+            toast.success("Spending profile saved!");
+            setTimeout(() => setSaved(false), 3000);
         } catch (err) {
             console.error("Failed to save:", err);
+            toast.error("Failed to save spending profile");
         } finally {
             setSaving(false);
         }
@@ -75,29 +99,33 @@ export function SpendingProfileClient() {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center py-16">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
-            </div>
+            <>
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-gray-900">Spending Profile</h1>
+                    <p className="mt-2 text-gray-500">Loading your profile...</p>
+                </div>
+                <SpendingSkeleton />
+            </>
         );
     }
 
     return (
         <>
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900">Spending Profile</h1>
                     <p className="mt-2 text-gray-500">
                         Tell us how much you spend monthly in each category so we can recommend the best cards.
                     </p>
                 </div>
-                <Button onClick={handleSave} disabled={saving} className="bg-amber-500 text-white hover:bg-amber-600">
+                <Button onClick={handleSave} disabled={saving} className="bg-amber-500 text-white hover:bg-amber-600 shrink-0">
                     {saved ? (<><Check className="mr-2 h-4 w-4" />Saved!</>) : saving ? "Saving..." : (<><Save className="mr-2 h-4 w-4" />Save Profile</>)}
                 </Button>
             </div>
 
             {/* Monthly Total */}
             <Card className="mb-6 border-gray-200 bg-white shadow-sm">
-                <CardContent className="flex items-center justify-between p-6">
+                <CardContent className="flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
                             <DollarSign className="h-6 w-6 text-amber-600" />
@@ -107,14 +135,14 @@ export function SpendingProfileClient() {
                             <p className="text-3xl font-bold text-gray-900">${totalMonthly.toLocaleString()}</p>
                         </div>
                     </div>
-                    <Badge variant="secondary" className="bg-amber-50 text-amber-700">
+                    <Badge variant="secondary" className="bg-amber-50 text-amber-700 self-start sm:self-auto">
                         ${(totalMonthly * 12).toLocaleString()}/yr
                     </Badge>
                 </CardContent>
             </Card>
 
             {/* Category Sliders */}
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
                 {CATEGORIES.map((cat) => (
                     <Card key={cat.key} className="border-gray-200 bg-white shadow-sm">
                         <CardHeader className="pb-3">
@@ -153,7 +181,7 @@ export function SpendingProfileClient() {
             </div>
 
             {/* Mobile save */}
-            <div className="mt-6 flex justify-center md:hidden">
+            <div className="mt-6 flex justify-center sm:hidden">
                 <Button onClick={handleSave} disabled={saving} className="w-full bg-amber-500 text-white hover:bg-amber-600">
                     {saved ? (<><Check className="mr-2 h-4 w-4" />Saved!</>) : (<><Save className="mr-2 h-4 w-4" />Save Profile</>)}
                 </Button>

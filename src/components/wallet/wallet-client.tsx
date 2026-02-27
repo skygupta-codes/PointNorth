@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CreditCard, Plus } from "lucide-react";
+import { toast } from "sonner";
 import type { CreditCard as CreditCardType } from "@/types";
 import { WalletCard } from "./wallet-card";
 import { AddCardDialog } from "./add-card-dialog";
@@ -14,6 +15,24 @@ interface UserCardFromAPI {
     nickname: string | null;
     pointsBalance: number | null;
     isPrimary: boolean | null;
+}
+
+function WalletSkeleton() {
+    return (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+                <Card key={i} className="overflow-hidden border-gray-200 bg-white shadow-sm">
+                    <div className="h-20 animate-pulse bg-gray-200" />
+                    <CardContent className="p-4 space-y-3">
+                        <div className="h-4 w-24 animate-pulse rounded bg-gray-100" />
+                        <div className="h-8 w-20 animate-pulse rounded bg-gray-100" />
+                        <div className="h-3 w-full animate-pulse rounded bg-gray-100" />
+                        <div className="h-3 w-3/4 animate-pulse rounded bg-gray-100" />
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+    );
 }
 
 export function WalletClient({
@@ -27,10 +46,12 @@ export function WalletClient({
     const fetchCards = useCallback(async () => {
         try {
             const res = await fetch("/api/cards");
+            if (!res.ok) throw new Error("Failed to fetch cards");
             const data = await res.json();
             setCards(data.cards || []);
         } catch (err) {
             console.error("Failed to fetch cards:", err);
+            toast.error("Failed to load your cards");
         } finally {
             setLoading(false);
         }
@@ -52,9 +73,15 @@ export function WalletClient({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(card),
             });
-            if (res.ok) fetchCards();
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || "Failed to add card");
+            }
+            toast.success("Card added to your wallet!");
+            fetchCards();
         } catch (err) {
             console.error("Failed to add card:", err);
+            toast.error(err instanceof Error ? err.message : "Failed to add card");
         }
     }
 
@@ -68,9 +95,12 @@ export function WalletClient({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id, ...data }),
             });
-            if (res.ok) fetchCards();
+            if (!res.ok) throw new Error("Failed to update card");
+            toast.success("Card updated!");
+            fetchCards();
         } catch (err) {
             console.error("Failed to update card:", err);
+            toast.error("Failed to update card");
         }
     }
 
@@ -79,17 +109,26 @@ export function WalletClient({
             const res = await fetch(`/api/cards?id=${id}`, {
                 method: "DELETE",
             });
-            if (res.ok) fetchCards();
+            if (!res.ok) throw new Error("Failed to delete card");
+            toast.success("Card removed from wallet");
+            fetchCards();
         } catch (err) {
             console.error("Failed to delete card:", err);
+            toast.error("Failed to delete card");
         }
     }
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center py-16">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
-            </div>
+            <>
+                <div className="mb-8 flex items-center justify-between">
+                    <div>
+                        <h1 className="text-3xl font-bold text-gray-900">My Wallet</h1>
+                        <p className="mt-2 text-gray-500">Loading your cards...</p>
+                    </div>
+                </div>
+                <WalletSkeleton />
+            </>
         );
     }
 

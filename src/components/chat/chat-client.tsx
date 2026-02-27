@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send, MessageCircle, Loader2, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import Markdown from "react-markdown";
 
 interface ChatMessage {
     role: "user" | "assistant";
@@ -89,6 +91,7 @@ export function ChatClient() {
                     { role: "assistant", content: data.reply },
                 ]);
             } else {
+                toast.error("Maple had trouble responding. Please try again.");
                 setMessages((prev) => [
                     ...prev,
                     {
@@ -98,6 +101,7 @@ export function ChatClient() {
                 ]);
             }
         } catch {
+            toast.error("Network error — please check your connection.");
             setMessages((prev) => [
                 ...prev,
                 {
@@ -112,6 +116,7 @@ export function ChatClient() {
 
     function handleClear() {
         setMessages([]);
+        toast.success("Chat cleared");
     }
 
     if (historyLoading) {
@@ -142,7 +147,7 @@ export function ChatClient() {
                         className="text-gray-400 hover:text-gray-600"
                     >
                         <Trash2 className="mr-1 h-4 w-4" />
-                        Clear Chat
+                        Clear
                     </Button>
                 )}
             </div>
@@ -185,7 +190,7 @@ export function ChatClient() {
                                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                             >
                                 <div
-                                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${msg.role === "user"
+                                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${msg.role === "user"
                                             ? "bg-amber-500 text-white"
                                             : "bg-gray-100 text-gray-900"
                                         }`}
@@ -195,9 +200,15 @@ export function ChatClient() {
                                             <span>🍁</span> Maple
                                         </div>
                                     )}
-                                    <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                                        {msg.content}
-                                    </div>
+                                    {msg.role === "assistant" ? (
+                                        <div className="prose prose-sm max-w-none prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-gray-900 prose-li:text-gray-800 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5">
+                                            <Markdown>{msg.content}</Markdown>
+                                        </div>
+                                    ) : (
+                                        <div className="text-sm leading-relaxed">
+                                            {msg.content}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}
