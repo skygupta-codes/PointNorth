@@ -21,13 +21,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-zinc-950 text-white">
-            <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
+        <div className="min-h-screen bg-gray-50 text-gray-900">
+            <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
                 <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
                     {/* Logo */}
                     <Link href="/dashboard" className="flex items-center gap-3">
                         <span className="text-2xl">🍁</span>
-                        <span className="text-xl font-bold tracking-tight">
+                        <span className="text-xl font-bold tracking-tight text-gray-900">
                             TrueNorthPoints
                         </span>
                     </Link>
@@ -38,9 +38,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`text-sm font-medium transition hover:text-amber-400 ${pathname === link.href
-                                    ? "text-white"
-                                    : "text-zinc-400"
+                                className={`text-sm font-medium transition hover:text-amber-600 ${pathname === link.href
+                                        ? "text-gray-900"
+                                        : "text-gray-500"
                                     }`}
                             >
                                 {link.label}
@@ -53,7 +53,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-zinc-400 hover:text-white"
+                            className="text-gray-500 hover:text-gray-900"
                         >
                             <Bell className="h-5 w-5" />
                         </Button>
@@ -65,19 +65,19 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="text-zinc-400 hover:text-white md:hidden"
+                                    className="text-gray-500 hover:text-gray-900 md:hidden"
                                 >
                                     <Menu className="h-5 w-5" />
                                 </Button>
                             </SheetTrigger>
                             <SheetContent
                                 side="right"
-                                className="w-72 border-zinc-800 bg-zinc-950 p-0"
+                                className="w-72 border-gray-200 bg-white p-0"
                             >
-                                <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-4">
+                                <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
                                     <div className="flex items-center gap-2">
                                         <span className="text-xl">🍁</span>
-                                        <span className="font-bold">
+                                        <span className="font-bold text-gray-900">
                                             TrueNorthPoints
                                         </span>
                                     </div>
@@ -85,7 +85,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                         variant="ghost"
                                         size="icon"
                                         onClick={() => setMobileOpen(false)}
-                                        className="text-zinc-400 hover:text-white"
+                                        className="text-gray-500 hover:text-gray-900"
                                     >
                                         <X className="h-5 w-5" />
                                     </Button>
@@ -99,8 +99,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                                 setMobileOpen(false)
                                             }
                                             className={`rounded-lg px-4 py-3 text-sm font-medium transition ${pathname === link.href
-                                                ? "bg-amber-500/10 text-amber-400"
-                                                : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                                                    ? "bg-amber-50 text-amber-700"
+                                                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                                                 }`}
                                         >
                                             {link.label}

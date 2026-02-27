@@ -19,14 +19,8 @@ const CATEGORIES = [
 
 export function SpendingProfileClient() {
     const [spending, setSpending] = useState<Record<string, number>>({
-        groceries: 0,
-        dining: 0,
-        gas: 0,
-        travel: 0,
-        streaming: 0,
-        shopping: 0,
-        transit: 0,
-        other: 0,
+        groceries: 0, dining: 0, gas: 0, travel: 0,
+        streaming: 0, shopping: 0, transit: 0, other: 0,
     });
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -55,9 +49,7 @@ export function SpendingProfileClient() {
         }
     }, []);
 
-    useEffect(() => {
-        fetchProfile();
-    }, [fetchProfile]);
+    useEffect(() => { fetchProfile(); }, [fetchProfile]);
 
     async function handleSave() {
         setSaving(true);
@@ -93,51 +85,29 @@ export function SpendingProfileClient() {
         <>
             <div className="mb-8 flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold">Spending Profile</h1>
-                    <p className="mt-2 text-zinc-400">
-                        Tell us how much you spend monthly in each category so we can
-                        recommend the best cards.
+                    <h1 className="text-3xl font-bold text-gray-900">Spending Profile</h1>
+                    <p className="mt-2 text-gray-500">
+                        Tell us how much you spend monthly in each category so we can recommend the best cards.
                     </p>
                 </div>
-                <Button
-                    onClick={handleSave}
-                    disabled={saving}
-                    className="bg-amber-500 text-zinc-950 hover:bg-amber-400"
-                >
-                    {saved ? (
-                        <>
-                            <Check className="mr-2 h-4 w-4" />
-                            Saved!
-                        </>
-                    ) : saving ? (
-                        "Saving..."
-                    ) : (
-                        <>
-                            <Save className="mr-2 h-4 w-4" />
-                            Save Profile
-                        </>
-                    )}
+                <Button onClick={handleSave} disabled={saving} className="bg-amber-500 text-white hover:bg-amber-600">
+                    {saved ? (<><Check className="mr-2 h-4 w-4" />Saved!</>) : saving ? "Saving..." : (<><Save className="mr-2 h-4 w-4" />Save Profile</>)}
                 </Button>
             </div>
 
             {/* Monthly Total */}
-            <Card className="mb-6 border-zinc-800 bg-zinc-900/50">
+            <Card className="mb-6 border-gray-200 bg-white shadow-sm">
                 <CardContent className="flex items-center justify-between p-6">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
-                            <DollarSign className="h-6 w-6 text-amber-400" />
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                            <DollarSign className="h-6 w-6 text-amber-600" />
                         </div>
                         <div>
-                            <p className="text-sm text-zinc-400">Estimated Monthly Spending</p>
-                            <p className="text-3xl font-bold text-white">
-                                ${totalMonthly.toLocaleString()}
-                            </p>
+                            <p className="text-sm text-gray-500">Estimated Monthly Spending</p>
+                            <p className="text-3xl font-bold text-gray-900">${totalMonthly.toLocaleString()}</p>
                         </div>
                     </div>
-                    <Badge
-                        variant="secondary"
-                        className="bg-amber-500/10 text-amber-400"
-                    >
+                    <Badge variant="secondary" className="bg-amber-50 text-amber-700">
                         ${(totalMonthly * 12).toLocaleString()}/yr
                     </Badge>
                 </CardContent>
@@ -146,17 +116,14 @@ export function SpendingProfileClient() {
             {/* Category Sliders */}
             <div className="grid gap-4 md:grid-cols-2">
                 {CATEGORIES.map((cat) => (
-                    <Card
-                        key={cat.key}
-                        className="border-zinc-800 bg-zinc-900/50"
-                    >
+                    <Card key={cat.key} className="border-gray-200 bg-white shadow-sm">
                         <CardHeader className="pb-3">
                             <CardTitle className="flex items-center justify-between text-sm">
-                                <span className="flex items-center gap-2 text-zinc-300">
+                                <span className="flex items-center gap-2 text-gray-700">
                                     <span className="text-lg">{cat.emoji}</span>
                                     {cat.label}
                                 </span>
-                                <span className="text-lg font-bold text-white">
+                                <span className="text-lg font-bold text-gray-900">
                                     ${spending[cat.key].toLocaleString()}
                                 </span>
                             </CardTitle>
@@ -176,7 +143,7 @@ export function SpendingProfileClient() {
                                 }
                                 className="w-full accent-amber-500"
                             />
-                            <div className="mt-1 flex justify-between text-xs text-zinc-600">
+                            <div className="mt-1 flex justify-between text-xs text-gray-400">
                                 <span>$0</span>
                                 <span>${cat.max.toLocaleString()}</span>
                             </div>
@@ -185,24 +152,10 @@ export function SpendingProfileClient() {
                 ))}
             </div>
 
-            {/* Bottom save button for mobile */}
+            {/* Mobile save */}
             <div className="mt-6 flex justify-center md:hidden">
-                <Button
-                    onClick={handleSave}
-                    disabled={saving}
-                    className="w-full bg-amber-500 text-zinc-950 hover:bg-amber-400"
-                >
-                    {saved ? (
-                        <>
-                            <Check className="mr-2 h-4 w-4" />
-                            Saved!
-                        </>
-                    ) : (
-                        <>
-                            <Save className="mr-2 h-4 w-4" />
-                            Save Profile
-                        </>
-                    )}
+                <Button onClick={handleSave} disabled={saving} className="w-full bg-amber-500 text-white hover:bg-amber-600">
+                    {saved ? (<><Check className="mr-2 h-4 w-4" />Saved!</>) : (<><Save className="mr-2 h-4 w-4" />Save Profile</>)}
                 </Button>
             </div>
         </>

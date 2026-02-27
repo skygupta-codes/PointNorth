@@ -2,13 +2,13 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-50">
             <div className="w-full max-w-md">
                 <div className="mb-8 text-center">
-                    <h1 className="text-3xl font-bold text-white">
+                    <h1 className="text-3xl font-bold text-gray-900">
                         🍁 TrueNorthPoints
                     </h1>
-                    <p className="mt-2 text-zinc-400">
+                    <p className="mt-2 text-gray-500">
                         Sign in to manage your rewards
                     </p>
                 </div>
@@ -16,17 +16,17 @@ export default function SignInPage() {
                     appearance={{
                         elements: {
                             rootBox: "mx-auto w-full",
-                            card: "shadow-2xl border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm",
-                            headerTitle: "text-white",
-                            headerSubtitle: "text-zinc-400",
+                            card: "shadow-lg border border-gray-200 bg-white",
+                            headerTitle: "text-gray-900",
+                            headerSubtitle: "text-gray-500",
                             socialButtonsBlockButton:
-                                "border-zinc-700 text-white hover:bg-zinc-800",
-                            formFieldLabel: "text-zinc-300",
+                                "border-gray-200 text-gray-700 hover:bg-gray-50",
+                            formFieldLabel: "text-gray-700",
                             formFieldInput:
-                                "bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500",
-                            footerActionLink: "text-amber-400 hover:text-amber-300",
-                            dividerLine: "bg-zinc-700",
-                            dividerText: "text-zinc-500",
+                                "bg-white border-gray-200 text-gray-900 placeholder:text-gray-400",
+                            footerActionLink: "text-amber-600 hover:text-amber-700",
+                            dividerLine: "bg-gray-200",
+                            dividerText: "text-gray-400",
                         },
                     }}
                 />
