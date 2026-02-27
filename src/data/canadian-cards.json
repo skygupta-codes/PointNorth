@@ -620,5 +620,76 @@
         ],
         "imageUrl": "/cards/amex-aeroplan-reserve.png",
         "tier": "ultra-premium"
+    },
+    {
+        "slug": "amex-platinum",
+        "name": "American Express Platinum Card",
+        "issuer": "American Express",
+        "network": "amex",
+        "annualFee": 799,
+        "rewardsCurrency": "Membership Rewards",
+        "transferPartners": [
+            "Aeroplan",
+            "Marriott Bonvoy",
+            "British Airways Avios",
+            "Hilton Honors"
+        ],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 3,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 2.0,
+        "signUpBonus": {
+            "points": 80000,
+            "spendRequired": 10000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "80,000 MR welcome bonus",
+            "3x on dining & travel",
+            "Unlimited Priority Pass lounge access",
+            "$200 annual travel credit + $200 dining credit"
+        ],
+        "imageUrl": "/cards/amex-platinum.png",
+        "tier": "ultra-premium"
+    },
+    {
+        "slug": "bmo-rewards-world-elite-mastercard",
+        "name": "BMO Rewards World Elite Mastercard",
+        "issuer": "BMO",
+        "network": "mastercard",
+        "annualFee": 150,
+        "rewardsCurrency": "BMO Rewards",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 3,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 0.7,
+        "signUpBonus": {
+            "points": 50000,
+            "spendRequired": 3000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "3x points on travel & dining",
+            "50,000 point sign-up bonus",
+            "Comprehensive travel insurance",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/bmo-rewards-we.png",
+        "tier": "premium"
     }
 ]
