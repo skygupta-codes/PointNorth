@@ -1,1 +1,624 @@
-[]
+[
+    {
+        "slug": "amex-cobalt",
+        "name": "American Express Cobalt Card",
+        "issuer": "American Express",
+        "network": "amex",
+        "annualFee": 192,
+        "rewardsCurrency": "Membership Rewards",
+        "transferPartners": [
+            "Aeroplan",
+            "Marriott Bonvoy",
+            "British Airways Avios",
+            "Hilton Honors"
+        ],
+        "earnRates": {
+            "dining": 5,
+            "groceries": 5,
+            "streaming": 3,
+            "transit": 2,
+            "travel": 2,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.5,
+        "signUpBonus": {
+            "points": 30000,
+            "spendRequired": 3000,
+            "timeframe": "10 months"
+        },
+        "highlights": [
+            "5x points on eats & drinks (groceries + dining)",
+            "Transfer to Aeroplan at 1:1 ratio",
+            "Monthly fee option ($15.99/mo)",
+            "Best all-around rewards card in Canada"
+        ],
+        "imageUrl": "/cards/amex-cobalt.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "td-aeroplan-visa-infinite",
+        "name": "TD Aeroplan Visa Infinite",
+        "issuer": "TD",
+        "network": "visa",
+        "annualFee": 139,
+        "rewardsCurrency": "Aeroplan",
+        "transferPartners": [
+            "Aeroplan"
+        ],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 1.5,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1.5,
+            "gas": 1.5,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 2.0,
+        "signUpBonus": {
+            "points": 20000,
+            "spendRequired": 1000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "1.5x points on gas, groceries & Air Canada",
+            "Free first checked bag on Air Canada",
+            "NEXUS application fee rebate",
+            "VIP benefits on Air Canada flights"
+        ],
+        "imageUrl": "/cards/td-aeroplan-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "td-aeroplan-visa-infinite-privilege",
+        "name": "TD Aeroplan Visa Infinite Privilege",
+        "issuer": "TD",
+        "network": "visa",
+        "annualFee": 599,
+        "rewardsCurrency": "Aeroplan",
+        "transferPartners": [
+            "Aeroplan"
+        ],
+        "earnRates": {
+            "dining": 1.5,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 2,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 2.0,
+        "signUpBonus": {
+            "points": 50000,
+            "spendRequired": 7500,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "Unlimited Maple Leaf Lounge access",
+            "Free checked bags on Air Canada",
+            "Comprehensive travel insurance",
+            "Aeroplan 25K status shortcut"
+        ],
+        "imageUrl": "/cards/td-aeroplan-vip.png",
+        "tier": "ultra-premium"
+    },
+    {
+        "slug": "scotiabank-gold-amex",
+        "name": "Scotiabank Gold American Express",
+        "issuer": "Scotiabank",
+        "network": "amex",
+        "annualFee": 120,
+        "rewardsCurrency": "Scene+",
+        "transferPartners": [
+            "Scene+"
+        ],
+        "earnRates": {
+            "dining": 5,
+            "groceries": 5,
+            "streaming": 3,
+            "transit": 2,
+            "travel": 3,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 30000,
+            "spendRequired": 2000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "5x Scene+ on dining & groceries",
+            "6x at Sobeys, Safeway & Foodland",
+            "No foreign transaction fees",
+            "Comprehensive travel insurance"
+        ],
+        "imageUrl": "/cards/scotia-gold-amex.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "scotiabank-passport-visa-infinite",
+        "name": "Scotiabank Passport Visa Infinite",
+        "issuer": "Scotiabank",
+        "network": "visa",
+        "annualFee": 150,
+        "rewardsCurrency": "Scene+",
+        "transferPartners": [
+            "Scene+"
+        ],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 2,
+            "travel": 3,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 30000,
+            "spendRequired": 1000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "No foreign transaction fees",
+            "3x Scene+ on travel purchases",
+            "6 annual airport lounge passes",
+            "Comprehensive travel insurance"
+        ],
+        "imageUrl": "/cards/scotia-passport.png",
+        "tier": "premium"
+    },
+    {
+        "slug": "cibc-aventura-visa-infinite",
+        "name": "CIBC Aventura Visa Infinite",
+        "issuer": "CIBC",
+        "network": "visa",
+        "annualFee": 139,
+        "rewardsCurrency": "Aventura",
+        "transferPartners": [
+            "Aeroplan"
+        ],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 2,
+            "travel": 2,
+            "gas": 1.5,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 25000,
+            "spendRequired": 3000,
+            "timeframe": "4 months"
+        },
+        "highlights": [
+            "2x on dining, groceries & transit",
+            "Convert Aventura to Aeroplan",
+            "Annual travel credit",
+            "Flexible travel redemptions"
+        ],
+        "imageUrl": "/cards/cibc-aventura-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "cibc-dividend-visa-infinite",
+        "name": "CIBC Dividend Visa Infinite",
+        "issuer": "CIBC",
+        "network": "visa",
+        "annualFee": 120,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 4,
+            "streaming": 1,
+            "transit": 2,
+            "travel": 1,
+            "gas": 4,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "4% cash back on gas & groceries",
+            "2% on dining, transit & recurring bills",
+            "Industry-leading grocery earn rate",
+            "Best for Loblaws stores (Visa accepted)"
+        ],
+        "imageUrl": "/cards/cibc-dividend-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "cibc-aeroplan-visa-infinite",
+        "name": "CIBC Aeroplan Visa Infinite",
+        "issuer": "CIBC",
+        "network": "visa",
+        "annualFee": 139,
+        "rewardsCurrency": "Aeroplan",
+        "transferPartners": [
+            "Aeroplan"
+        ],
+        "earnRates": {
+            "dining": 1.5,
+            "groceries": 1.5,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1.5,
+            "gas": 1.5,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 2.0,
+        "signUpBonus": {
+            "points": 20000,
+            "spendRequired": 1000,
+            "timeframe": "4 months"
+        },
+        "highlights": [
+            "1.5x on groceries, gas, dining & travel",
+            "Free first checked bag on Air Canada",
+            "Strong Aeroplan earning",
+            "Priority boarding on Air Canada"
+        ],
+        "imageUrl": "/cards/cibc-aeroplan-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "rbc-avion-visa-infinite",
+        "name": "RBC Avion Visa Infinite",
+        "issuer": "RBC",
+        "network": "visa",
+        "annualFee": 120,
+        "rewardsCurrency": "RBC Rewards",
+        "transferPartners": [
+            "British Airways Avios",
+            "WestJet Dollars",
+            "Cathay Pacific Asia Miles"
+        ],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 1,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 35000,
+            "spendRequired": 5000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "Flat 1 point per $1 on everything",
+            "Transfer to airline partners",
+            "Flexible travel redemptions",
+            "Strong sign-up bonus"
+        ],
+        "imageUrl": "/cards/rbc-avion-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "rbc-ion-visa",
+        "name": "RBC ION Visa",
+        "issuer": "RBC",
+        "network": "visa",
+        "annualFee": 0,
+        "rewardsCurrency": "Avion Points",
+        "transferPartners": [
+            "British Airways Avios",
+            "WestJet Dollars"
+        ],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 1.5,
+            "streaming": 1.5,
+            "transit": 1.5,
+            "travel": 1,
+            "gas": 1.5,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 0.7,
+        "signUpBonus": {
+            "points": 10000,
+            "spendRequired": 1000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "No annual fee",
+            "1.5x on groceries, gas, streaming & transit",
+            "Earns Avion points (transferable)",
+            "Great starter travel rewards card"
+        ],
+        "imageUrl": "/cards/rbc-ion.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "bmo-world-elite-mastercard",
+        "name": "BMO CashBack World Elite Mastercard",
+        "issuer": "BMO",
+        "network": "mastercard",
+        "annualFee": 120,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 5,
+            "streaming": 1,
+            "transit": 2,
+            "travel": 1,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "5% cash back on groceries",
+            "3% on dining & food delivery",
+            "2% on transit & recurring bills",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/bmo-cashback-we.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "bmo-air-miles-world-elite",
+        "name": "BMO AIR MILES World Elite Mastercard",
+        "issuer": "BMO",
+        "network": "mastercard",
+        "annualFee": 120,
+        "rewardsCurrency": "AIR MILES",
+        "transferPartners": [
+            "AIR MILES"
+        ],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 3,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 0.15,
+        "signUpBonus": {
+            "points": 3000,
+            "spendRequired": 3000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "3 AIR MILES per $12 at Shell & Sobeys partners",
+            "3x on dining & groceries",
+            "Stack with AIR MILES collector card",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/bmo-airmiles-we.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "rogers-world-elite-mastercard",
+        "name": "Rogers World Elite Mastercard",
+        "issuer": "Rogers",
+        "network": "mastercard",
+        "annualFee": 0,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 1.5,
+            "groceries": 1.5,
+            "streaming": 1.5,
+            "transit": 1.5,
+            "travel": 1.5,
+            "gas": 1.5,
+            "shopping": 1.5,
+            "other": 1.5
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee",
+            "Flat 1.5% cash back on everything",
+            "3% on U.S. dollar purchases",
+            "Perfect for Costco shoppers (Mastercard)"
+        ],
+        "imageUrl": "/cards/rogers-we.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "simplycash-preferred-amex",
+        "name": "SimplyCash Preferred Card from Amex",
+        "issuer": "American Express",
+        "network": "amex",
+        "annualFee": 120,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 4,
+            "streaming": 2,
+            "transit": 2,
+            "travel": 2,
+            "gas": 4,
+            "shopping": 2,
+            "other": 2
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 400,
+            "spendRequired": 3000,
+            "timeframe": "4 months"
+        },
+        "highlights": [
+            "4% cash back on gas & groceries",
+            "2% on everything else",
+            "Simple flat-rate cash back",
+            "No caps on cash back earned"
+        ],
+        "imageUrl": "/cards/simplycash-pref.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "tangerine-world-mastercard",
+        "name": "Tangerine World Mastercard",
+        "issuer": "Tangerine",
+        "network": "mastercard",
+        "annualFee": 0,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 2,
+            "streaming": 0.5,
+            "transit": 2,
+            "travel": 0.5,
+            "gas": 2,
+            "shopping": 0.5,
+            "other": 0.5
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee",
+            "2% cash back in 3 categories of your choice",
+            "0.5% on everything else",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/tangerine-world.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "simplii-cash-back-visa",
+        "name": "Simplii Financial Cash Back Visa",
+        "issuer": "Simplii Financial",
+        "network": "visa",
+        "annualFee": 0,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 4,
+            "groceries": 4,
+            "streaming": 0.5,
+            "transit": 1.5,
+            "travel": 0.5,
+            "gas": 4,
+            "shopping": 0.5,
+            "other": 0.5
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 300,
+            "spendRequired": 0,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "No annual fee",
+            "4% on dining, groceries & gas",
+            "1.5% on recurring bills & pre-authorized payments",
+            "Best no-fee cashback card"
+        ],
+        "imageUrl": "/cards/simplii-cashback.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "national-bank-world-elite-mastercard",
+        "name": "National Bank World Elite Mastercard",
+        "issuer": "National Bank",
+        "network": "mastercard",
+        "annualFee": 150,
+        "rewardsCurrency": "National Bank Points",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 5,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 2,
+            "travel": 3,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 40000,
+            "spendRequired": 3000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "5x points on dining",
+            "3x on travel purchases",
+            "40,000 point sign-up bonus",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/nbc-world-elite.png",
+        "tier": "premium"
+    },
+    {
+        "slug": "amex-aeroplan-reserve",
+        "name": "American Express Aeroplan Reserve",
+        "issuer": "American Express",
+        "network": "amex",
+        "annualFee": 599,
+        "rewardsCurrency": "Aeroplan",
+        "transferPartners": [
+            "Aeroplan"
+        ],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 3,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 2.0,
+        "signUpBonus": {
+            "points": 80000,
+            "spendRequired": 10000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "80,000 Aeroplan welcome bonus",
+            "3x on Air Canada & travel",
+            "Unlimited Maple Leaf Lounge access",
+            "Annual $200 travel credit"
+        ],
+        "imageUrl": "/cards/amex-aeroplan-reserve.png",
+        "tier": "ultra-premium"
+    }
+]
