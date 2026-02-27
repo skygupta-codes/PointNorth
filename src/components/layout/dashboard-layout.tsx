@@ -11,6 +11,7 @@ import { Bell, Menu, X } from "lucide-react";
 const navLinks = [
     { href: "/dashboard", label: "Dashboard" },
     { href: "/wallet", label: "My Wallet" },
+    { href: "/spending", label: "Spending" },
     { href: "/chat", label: "Chat with Maple" },
 ];
 
@@ -37,8 +38,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 key={link.href}
                                 href={link.href}
                                 className={`text-sm font-medium transition hover:text-amber-400 ${pathname === link.href
-                                        ? "text-white"
-                                        : "text-zinc-400"
+                                    ? "text-white"
+                                    : "text-zinc-400"
                                     }`}
                             >
                                 {link.label}
@@ -97,8 +98,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                                 setMobileOpen(false)
                                             }
                                             className={`rounded-lg px-4 py-3 text-sm font-medium transition ${pathname === link.href
-                                                    ? "bg-amber-500/10 text-amber-400"
-                                                    : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                                                ? "bg-amber-500/10 text-amber-400"
+                                                : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
                                                 }`}
                                         >
                                             {link.label}
