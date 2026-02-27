@@ -1,18 +1,51 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { getDb } from "@/db";
 import { users, userCards } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 
-// Helper: get internal user ID from Clerk ID
-async function getUserId(clerkId: string) {
+// Helper: get internal user ID from Clerk ID, auto-creating if webhook hasn't fired yet
+async function getOrCreateUserId(clerkId: string): Promise<string | null> {
     const db = getDb();
-    const [user] = await db
+    const [existing] = await db
         .select({ id: users.id })
         .from(users)
         .where(eq(users.clerkId, clerkId))
         .limit(1);
-    return user?.id ?? null;
+
+    if (existing) return existing.id;
+
+    // User doesn't exist — webhook may not have fired yet. Auto-create.
+    try {
+        const clerkUser = await currentUser();
+        if (!clerkUser) return null;
+
+        const [newUser] = await db
+            .insert(users)
+            .values({
+                clerkId,
+                email: clerkUser.emailAddresses?.[0]?.emailAddress || "",
+                name: [clerkUser.firstName, clerkUser.lastName].filter(Boolean).join(" ") || null,
+                onboardingCompleted: false,
+            })
+            .onConflictDoNothing()
+            .returning();
+
+        // If onConflictDoNothing returned nothing, try selecting again (race condition)
+        if (!newUser) {
+            const [raced] = await db
+                .select({ id: users.id })
+                .from(users)
+                .where(eq(users.clerkId, clerkId))
+                .limit(1);
+            return raced?.id ?? null;
+        }
+
+        return newUser.id;
+    } catch (err) {
+        console.error("Failed to auto-create user:", err);
+        return null;
+    }
 }
 
 // GET /api/cards — fetch user's wallet
@@ -26,7 +59,7 @@ export async function GET() {
             );
         }
 
-        const userId = await getUserId(clerkId);
+        const userId = await getOrCreateUserId(clerkId);
         if (!userId) {
             return NextResponse.json({ cards: [] });
         }
@@ -59,7 +92,7 @@ export async function POST(req: Request) {
             );
         }
 
-        const userId = await getUserId(clerkId);
+        const userId = await getOrCreateUserId(clerkId);
         if (!userId) {
             return NextResponse.json(
                 { error: "User not found in database. Please sign out and sign in again." },
@@ -121,7 +154,7 @@ export async function PATCH(req: Request) {
             );
         }
 
-        const userId = await getUserId(clerkId);
+        const userId = await getOrCreateUserId(clerkId);
         if (!userId) {
             return NextResponse.json(
                 { error: "User not found" },
@@ -192,7 +225,7 @@ export async function DELETE(req: Request) {
             );
         }
 
-        const userId = await getUserId(clerkId);
+        const userId = await getOrCreateUserId(clerkId);
         if (!userId) {
             return NextResponse.json(
                 { error: "User not found" },
