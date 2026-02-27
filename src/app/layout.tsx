@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { ServiceWorkerRegistrar } from "@/components/pwa/sw-registrar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +18,24 @@ export const metadata: Metadata = {
   title: "TrueNorthPoints.ca — Maximize Your Canadian Rewards",
   description:
     "AI-powered credit card rewards optimizer for Canadians. Track your points, get smart recommendations, and never leave rewards on the table.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "TrueNorthPoints",
+  },
+  icons: {
+    icon: "/icons/icon-512.png",
+    apple: "/icons/icon-512.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#09090b",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -34,6 +53,7 @@ export default async function RootLayout({
       >
         {children}
         <Toaster />
+        <ServiceWorkerRegistrar />
       </body>
     </html>
   );

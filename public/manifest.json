@@ -1,0 +1,23 @@
+{
+    "name": "TrueNorthPoints.ca",
+    "short_name": "TrueNorthPoints",
+    "description": "AI-powered credit card rewards optimizer for Canadians. Track your points, get smart recommendations.",
+    "start_url": "/dashboard",
+    "display": "standalone",
+    "background_color": "#09090b",
+    "theme_color": "#09090b",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "finance",
+        "lifestyle"
+    ],
+    "lang": "en-CA"
+}
