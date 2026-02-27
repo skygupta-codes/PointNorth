@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
 const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 const isClerkConfigured = clerkKey && !clerkKey.includes("REPLACE_ME");
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -40,6 +39,7 @@ export default function RootLayout({
   );
 
   if (isClerkConfigured) {
+    const { ClerkProvider } = await import("@clerk/nextjs");
     return <ClerkProvider>{content}</ClerkProvider>;
   }
 
