@@ -1,4 +1,4 @@
-// PointsNorth — Shared TypeScript types
+// TrueNorthPoints — Shared TypeScript types
 
 // Canadian credit card from the JSON catalog
 export interface CreditCard {

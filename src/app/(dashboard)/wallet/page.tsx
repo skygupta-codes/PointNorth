@@ -9,7 +9,7 @@ export default function WalletPage() {
                 <div className="mx-auto flex h-16 max-w-7xl items-center px-6">
                     <div className="flex items-center gap-3">
                         <span className="text-2xl">🍁</span>
-                        <span className="text-xl font-bold tracking-tight">PointsNorth</span>
+                        <span className="text-xl font-bold tracking-tight">TrueNorthPoints</span>
                     </div>
                     <nav className="ml-8 hidden items-center gap-6 md:flex">
                         <a href="/dashboard" className="text-sm font-medium text-zinc-400 transition hover:text-amber-400">

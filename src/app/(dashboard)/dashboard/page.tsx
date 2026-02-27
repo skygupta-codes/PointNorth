@@ -32,7 +32,7 @@ export default async function DashboardPage() {
                 <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
                     <div className="flex items-center gap-3">
                         <span className="text-2xl">🍁</span>
-                        <span className="text-xl font-bold tracking-tight">PointsNorth</span>
+                        <span className="text-xl font-bold tracking-tight">TrueNorthPoints</span>
                     </div>
                     <nav className="hidden items-center gap-6 md:flex">
                         <a

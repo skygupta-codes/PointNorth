@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PointsNorth — Maximize Your Canadian Rewards",
+  title: "TrueNorthPoints.ca — Maximize Your Canadian Rewards",
   description:
     "AI-powered credit card rewards optimizer for Canadians. Track your points, get smart recommendations, and never leave rewards on the table.",
 };

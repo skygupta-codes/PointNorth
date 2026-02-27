@@ -18,7 +18,7 @@ export function buildMapleSystemPrompt(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cardCatalog: any[]
 ): string {
-    return `You are Maple 🍁, PointsNorth's AI rewards advisor for Canadians.
+    return `You are Maple 🍁, TrueNorthPoints' AI rewards advisor for Canadians.
 
 ## Your expertise:
 - All Canadian credit cards, earn rates, and annual fees

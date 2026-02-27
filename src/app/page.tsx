@@ -18,7 +18,7 @@ export default function LandingPage() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <span className="text-2xl">🍁</span>
-            <span className="text-xl font-bold tracking-tight">PointsNorth</span>
+            <span className="text-xl font-bold tracking-tight">TrueNorthPoints</span>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/sign-in">
@@ -52,7 +52,7 @@ export default function LandingPage() {
             on the Table.
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-zinc-400 md:text-xl">
-            PointsNorth tracks your Canadian credit card rewards, tells you the
+            TrueNorthPoints tracks your Canadian credit card rewards, tells you the
             best card for every purchase, and helps you maximize your Aeroplan,
             Scene+, and cashback earnings.
           </p>
@@ -153,7 +153,7 @@ export default function LandingPage() {
               Your Data Stays Private
             </h3>
             <p className="text-zinc-400">
-              PointsNorth never connects to your bank. You manually add cards
+              TrueNorthPoints never connects to your bank. You manually add cards
               and points — you&apos;re always in control. Powered by SOC 2
               compliant infrastructure.
             </p>
@@ -188,10 +188,10 @@ export default function LandingPage() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center gap-2">
             <span className="text-lg">🍁</span>
-            <span className="font-semibold">PointsNorth</span>
+            <span className="font-semibold">TrueNorthPoints</span>
           </div>
           <p className="text-sm text-zinc-500">
-            © {new Date().getFullYear()} PointsNorth. Made in Canada.
+            © {new Date().getFullYear()} TrueNorthPoints.ca — Made in Canada.
           </p>
         </div>
       </footer>
