@@ -179,13 +179,26 @@ export async function POST(req: Request) {
         const userContext = await buildUserContext(clerkId);
 
         // Get response from the configured AI provider
-        const provider = getProvider();
+        // Try OpenAI first, fall back to Gemini if it fails
         let response: string;
+        const provider = getProvider();
 
-        if (provider === "openai") {
-            response = await chatWithOpenAI(message, history, userContext);
-        } else {
-            response = await chatWithGemini(message, history, userContext);
+        try {
+            if (provider === "openai") {
+                response = await chatWithOpenAI(message, history, userContext);
+            } else {
+                response = await chatWithGemini(message, history, userContext);
+            }
+        } catch (aiError) {
+            console.warn(`${provider} failed, attempting fallback:`, aiError);
+            // If OpenAI failed and Gemini is available, try Gemini as fallback
+            if (provider === "openai" && genAI) {
+                response = await chatWithGemini(message, history, userContext);
+            } else if (provider === "gemini" && openai) {
+                response = await chatWithOpenAI(message, history, userContext);
+            } else {
+                throw aiError; // No fallback available
+            }
         }
 
         // Save to database
