@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
 
   server: {
     // Load the deployed Vercel app inside the native WebView
-    url: "https://pointsnorth.vercel.app",
+    url: "https://truenorthpoints.ca",
     cleartext: false,
   },
 

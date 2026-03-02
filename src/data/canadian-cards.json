@@ -691,5 +691,506 @@
         ],
         "imageUrl": "/cards/bmo-rewards-we.png",
         "tier": "premium"
+    },
+    {
+        "slug": "scotia-momentum-visa-infinite",
+        "name": "Scotia Momentum Visa Infinite",
+        "issuer": "Scotiabank",
+        "network": "visa",
+        "annualFee": 120,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 4,
+            "streaming": 2,
+            "transit": 2,
+            "travel": 1,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "4% cash back on eligible grocery and recurring bills",
+            "2% on gas, transit, dining & food delivery",
+            "1% on everything else",
+            "Comprehensive travel insurance"
+        ],
+        "imageUrl": "/cards/scotia-momentum-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "td-cash-back-visa-infinite",
+        "name": "TD Cash Back Visa Infinite",
+        "issuer": "TD",
+        "network": "visa",
+        "annualFee": 120,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 3,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 3,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "3% cash back on gas and groceries",
+            "2% on dining and recurring bills",
+            "1% on everything else",
+            "Strong everyday cash back card"
+        ],
+        "imageUrl": "/cards/td-cashback-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "pc-world-elite-mastercard",
+        "name": "PC Financial World Elite Mastercard",
+        "issuer": "PC Financial",
+        "network": "mastercard",
+        "annualFee": 0,
+        "rewardsCurrency": "PC Optimum",
+        "transferPartners": [
+            "PC Optimum"
+        ],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 3,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 3,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 20000,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee",
+            "30 PC Optimum pts/$1 at Loblaw-banner stores (~3%)",
+            "45 pts/$1 at Shoppers Drug Mart (~4.5%)",
+            "10 pts/$1 everywhere else — Costco accepted"
+        ],
+        "imageUrl": "/cards/pc-world-elite.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "bmo-eclipse-visa-infinite",
+        "name": "BMO eclipse Visa Infinite",
+        "issuer": "BMO",
+        "network": "visa",
+        "annualFee": 120,
+        "rewardsCurrency": "BMO Rewards",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 5,
+            "groceries": 5,
+            "streaming": 1,
+            "transit": 5,
+            "travel": 1,
+            "gas": 5,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 0.7,
+        "signUpBonus": {
+            "points": 70000,
+            "spendRequired": 3000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "5x on groceries, dining, gas & transit",
+            "70,000 point welcome bonus",
+            "Comprehensive travel insurance",
+            "Strong across everyday spending categories"
+        ],
+        "imageUrl": "/cards/bmo-eclipse-vi.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "westjet-rbc-world-elite-mastercard",
+        "name": "WestJet RBC World Elite Mastercard",
+        "issuer": "RBC",
+        "network": "mastercard",
+        "annualFee": 119,
+        "rewardsCurrency": "WestJet Dollars",
+        "transferPartners": [
+            "WestJet"
+        ],
+        "earnRates": {
+            "dining": 1.5,
+            "groceries": 1.5,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 2,
+            "gas": 1.5,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 450,
+            "spendRequired": 5000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "$450 WestJet dollar welcome bonus",
+            "2% back on WestJet purchases",
+            "Free checked bag on WestJet for you + up to 8 companions",
+            "Annual companion voucher for $99 round trip"
+        ],
+        "imageUrl": "/cards/westjet-rbc-we.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "mbna-rewards-world-elite-mastercard",
+        "name": "MBNA Rewards World Elite Mastercard",
+        "issuer": "MBNA",
+        "network": "mastercard",
+        "annualFee": 89,
+        "rewardsCurrency": "MBNA Points",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 2,
+            "streaming": 2,
+            "transit": 2,
+            "travel": 5,
+            "gas": 2,
+            "shopping": 2,
+            "other": 2
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 20000,
+            "spendRequired": 1000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "5x points on travel purchases",
+            "2x points on everything else",
+            "Low $89 annual fee for a World Elite card",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/mbna-rewards-we.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "canadian-tire-triangle-world-elite",
+        "name": "Canadian Tire Triangle World Elite Mastercard",
+        "issuer": "Canadian Tire",
+        "network": "mastercard",
+        "annualFee": 0,
+        "rewardsCurrency": "CT Money",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 1,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 2,
+            "shopping": 4,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee",
+            "4% CT Money at Canadian Tire, Sport Chek, Mark's",
+            "2% at Shell gas stations",
+            "Accepted everywhere Mastercard is — great for Costco"
+        ],
+        "imageUrl": "/cards/ct-triangle-we.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "desjardins-cashback-world-elite-visa",
+        "name": "Desjardins Cashback World Elite Visa",
+        "issuer": "Desjardins",
+        "network": "visa",
+        "annualFee": 110,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 2,
+            "groceries": 4,
+            "streaming": 1,
+            "transit": 2,
+            "travel": 2,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "4% cash back on groceries",
+            "2% on gas, dining, transit & travel",
+            "Popular in Quebec",
+            "Comprehensive insurance package"
+        ],
+        "imageUrl": "/cards/desjardins-cashback-we.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "neo-world-elite-mastercard",
+        "name": "Neo World Elite Mastercard",
+        "issuer": "Neo Financial",
+        "network": "mastercard",
+        "annualFee": 125,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 5,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 3,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "Up to 5% cash back on groceries",
+            "Average 5% return with Neo partner stores",
+            "3% on gas and dining",
+            "Digital-first fintech with seamless app experience"
+        ],
+        "imageUrl": "/cards/neo-world-elite.png",
+        "tier": "mid"
+    },
+    {
+        "slug": "cibc-costco-mastercard",
+        "name": "CIBC Costco Mastercard",
+        "issuer": "CIBC",
+        "network": "mastercard",
+        "annualFee": 0,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 3,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee (Costco membership required)",
+            "3% on dining and travel",
+            "2% on gas and Costco in-store purchases",
+            "Official Costco credit card in Canada"
+        ],
+        "imageUrl": "/cards/cibc-costco.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "scotiabank-scene-visa",
+        "name": "Scotiabank Scene+ Visa",
+        "issuer": "Scotiabank",
+        "network": "visa",
+        "annualFee": 0,
+        "rewardsCurrency": "Scene+",
+        "transferPartners": [
+            "Scene+"
+        ],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 1,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 5000,
+            "spendRequired": 750,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "No annual fee",
+            "Earn Scene+ points on every purchase",
+            "Redeem for movies, groceries, dining, travel",
+            "Great starter card — no income requirement"
+        ],
+        "imageUrl": "/cards/scotia-scene-visa.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "rbc-cashback-mastercard",
+        "name": "RBC Cash Back Mastercard",
+        "issuer": "RBC",
+        "network": "mastercard",
+        "annualFee": 0,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 1,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 1,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee",
+            "2% cash back on grocery purchases",
+            "1% on everything else",
+            "Great starter no-fee card from a Big Five bank"
+        ],
+        "imageUrl": "/cards/rbc-cashback.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "bmo-ascend-world-elite-mastercard",
+        "name": "BMO Ascend World Elite Mastercard",
+        "issuer": "BMO",
+        "network": "mastercard",
+        "annualFee": 150,
+        "rewardsCurrency": "BMO Rewards",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 2,
+            "streaming": 1,
+            "transit": 1,
+            "travel": 5,
+            "gas": 2,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 0.7,
+        "signUpBonus": {
+            "points": 60000,
+            "spendRequired": 3000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "5x on travel purchases",
+            "3x on dining",
+            "60,000 welcome bonus",
+            "Mastercard — accepted at Costco"
+        ],
+        "imageUrl": "/cards/bmo-ascend-we.png",
+        "tier": "premium"
+    },
+    {
+        "slug": "amex-simplycash",
+        "name": "American Express SimplyCash Card",
+        "issuer": "American Express",
+        "network": "amex",
+        "annualFee": 0,
+        "rewardsCurrency": "Cash Back",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 1.25,
+            "groceries": 2,
+            "streaming": 1.25,
+            "transit": 1.25,
+            "travel": 1.25,
+            "gas": 2,
+            "shopping": 1.25,
+            "other": 1.25
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 0,
+            "spendRequired": 0,
+            "timeframe": ""
+        },
+        "highlights": [
+            "No annual fee",
+            "2% cash back on gas and groceries",
+            "1.25% on everything else",
+            "Best no-fee Amex cash back card"
+        ],
+        "imageUrl": "/cards/amex-simplycash.png",
+        "tier": "budget"
+    },
+    {
+        "slug": "td-first-class-travel-visa-infinite",
+        "name": "TD First Class Travel Visa Infinite",
+        "issuer": "TD",
+        "network": "visa",
+        "annualFee": 139,
+        "rewardsCurrency": "TD Rewards",
+        "transferPartners": [],
+        "earnRates": {
+            "dining": 3,
+            "groceries": 1,
+            "streaming": 1,
+            "transit": 3,
+            "travel": 3,
+            "gas": 1,
+            "shopping": 1,
+            "other": 1
+        },
+        "pointValue": 1.0,
+        "signUpBonus": {
+            "points": 50000,
+            "spendRequired": 1000,
+            "timeframe": "3 months"
+        },
+        "highlights": [
+            "3x points on dining, travel & transit",
+            "50,000 TD Rewards welcome bonus",
+            "Flexible travel redemptions via Expedia for TD",
+            "Comprehensive travel insurance"
+        ],
+        "imageUrl": "/cards/td-first-class-vi.png",
+        "tier": "mid"
     }
 ]

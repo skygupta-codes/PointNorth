@@ -1,12 +1,27 @@
 import { NextResponse } from "next/server";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from "openai";
 import { getDb } from "@/db";
 import { users, userCards, spendingProfiles, chatMessages } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { getCardBySlug } from "@/lib/cards";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+// Initialize AI clients
+const genAI = process.env.GEMINI_API_KEY
+    ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+    : null;
+
+const openai = process.env.OPENAI_API_KEY
+    ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    : null;
+
+// Determine which provider to use: prefer OpenAI, fallback to Gemini
+function getProvider(): "openai" | "gemini" {
+    if (openai) return "openai";
+    if (genAI) return "gemini";
+    throw new Error("No AI provider configured. Set OPENAI_API_KEY or GEMINI_API_KEY.");
+}
 
 // Build system context from user's wallet and spending profile
 async function buildUserContext(clerkId: string): Promise<string> {
@@ -93,6 +108,58 @@ RULES:
 - If you don't know something specific, say so honestly
 - Respond in the same language the user writes in (English or French)`;
 
+// Chat with OpenAI (GPT-4o)
+async function chatWithOpenAI(
+    message: string,
+    history: { role: string; content: string }[],
+    userContext: string
+): Promise<string> {
+    if (!openai) throw new Error("OpenAI not configured");
+
+    const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
+        {
+            role: "system",
+            content: `${SYSTEM_PROMPT}\n\n--- USER DATA ---\n${userContext}`,
+        },
+        ...history.map((msg) => ({
+            role: (msg.role === "assistant" ? "assistant" : "user") as "assistant" | "user",
+            content: msg.content,
+        })),
+        { role: "user", content: message },
+    ];
+
+    const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        max_tokens: 1024,
+        messages,
+    });
+
+    return response.choices[0]?.message?.content || "I couldn't generate a response.";
+}
+
+// Chat with Gemini (fallback)
+async function chatWithGemini(
+    message: string,
+    history: { role: string; content: string }[],
+    userContext: string
+): Promise<string> {
+    if (!genAI) throw new Error("Gemini not configured");
+
+    const geminiHistory = history.map((msg) => ({
+        role: msg.role === "assistant" ? "model" as const : "user" as const,
+        parts: [{ text: msg.content }],
+    }));
+
+    const model = genAI.getGenerativeModel({
+        model: "gemini-2.5-flash",
+        systemInstruction: `${SYSTEM_PROMPT}\n\n--- USER DATA ---\n${userContext}`,
+    });
+
+    const chat = model.startChat({ history: geminiHistory });
+    const result = await chat.sendMessage(message);
+    return result.response.text();
+}
+
 // POST /api/chat — Maple AI chat
 export async function POST(req: Request) {
     try {
@@ -111,21 +178,15 @@ export async function POST(req: Request) {
         // Build user context
         const userContext = await buildUserContext(clerkId);
 
-        // Build Gemini chat history
-        const geminiHistory = history.map((msg: { role: string; content: string }) => ({
-            role: msg.role === "assistant" ? "model" : "user",
-            parts: [{ text: msg.content }],
-        }));
+        // Get response from the configured AI provider
+        const provider = getProvider();
+        let response: string;
 
-        // Create Gemini model
-        const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
-            systemInstruction: `${SYSTEM_PROMPT}\n\n--- USER DATA ---\n${userContext}`,
-        });
-
-        const chat = model.startChat({ history: geminiHistory });
-        const result = await chat.sendMessage(message);
-        const response = result.response.text();
+        if (provider === "openai") {
+            response = await chatWithOpenAI(message, history, userContext);
+        } else {
+            response = await chatWithGemini(message, history, userContext);
+        }
 
         // Save to database
         const db = getDb();
