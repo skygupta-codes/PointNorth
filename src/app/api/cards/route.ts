@@ -3,6 +3,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { getDb } from "@/db";
 import { users, userCards } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
+import { getUserTier, checkCardLimit } from "@/lib/subscription";
 
 // Helper: get internal user ID from Clerk ID, auto-creating if webhook hasn't fired yet
 async function getOrCreateUserId(clerkId: string): Promise<string | null> {
@@ -112,6 +113,25 @@ export async function POST(req: Request) {
         }
 
         const db = getDb();
+
+        // Check subscription card limit
+        const { tier } = await getUserTier(clerkId);
+        const existingCards = await db
+            .select({ id: userCards.id })
+            .from(userCards)
+            .where(eq(userCards.userId, userId));
+        const cardCheck = await checkCardLimit(userId, tier, existingCards.length);
+        if (!cardCheck.allowed) {
+            return NextResponse.json(
+                {
+                    error: `Card limit reached (${cardCheck.limit} cards on ${tier} plan). Upgrade for unlimited cards.`,
+                    limit: cardCheck.limit,
+                    current: cardCheck.current,
+                    upgrade: true,
+                },
+                { status: 403 }
+            );
+        }
 
         // If marking as primary, unset other primaries first
         if (isPrimary) {

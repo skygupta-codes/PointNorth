@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { getDb } from "@/db";
 import { users, userCards, spendingProfiles } from "@/db/schema";
+import { getUserTier, getTierFeatures } from "@/lib/subscription";
 import { eq } from "drizzle-orm";
 import {
     getBestCardPerCategory,
@@ -72,17 +73,25 @@ export async function GET() {
         };
 
         const categoryRecs = getBestCardPerCategory(walletSlugs, spending);
-        const cardsToConsider = getCardsYouDontHave(walletSlugs, spending).slice(0, 5);
         const walletValue = getWalletAnnualValue(walletSlugs, spending);
         const missed = getMissedValue(walletSlugs, spending);
+
+        // Gate "Cards You Don't Have" behind Plus tier
+        const { tier } = await getUserTier(clerkId);
+        const features = getTierFeatures(tier);
+        const cardsToConsider = features.hasCardsToConsider
+            ? getCardsYouDontHave(walletSlugs, spending).slice(0, 5)
+            : [];
 
         return NextResponse.json({
             hasData: true,
             categoryRecommendations: categoryRecs,
             cardsToConsider,
+            cardsToConsiderGated: !features.hasCardsToConsider,
             walletValue,
             missed,
             walletSize: walletSlugs.length,
+            tier,
         });
     } catch (err) {
         console.error("GET /api/recommendations error:", err);

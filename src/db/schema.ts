@@ -21,6 +21,8 @@ export const users = pgTable("users", {
     province: text("province"), // ON, BC, QC, AB, etc.
     preferredCurrency: text("preferred_currency").default("aeroplan"),
     onboardingCompleted: boolean("onboarding_completed").default(false),
+    subscriptionTier: text("subscription_tier").default("free"), // 'free' | 'plus' | 'pro'
+    stripeCustomerId: text("stripe_customer_id"),
     createdAt: timestamp("created_at").defaultNow(),
 });
 

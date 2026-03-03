@@ -6,6 +6,7 @@ import { getDb } from "@/db";
 import { users, userCards, spendingProfiles, chatMessages } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { getCardBySlug } from "@/lib/cards";
+import { getUserTier, checkChatLimit } from "@/lib/subscription";
 
 // Initialize AI clients
 const genAI = process.env.GEMINI_API_KEY
@@ -166,6 +167,23 @@ export async function POST(req: Request) {
         const { userId: clerkId } = await auth();
         if (!clerkId) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        // Check subscription chat limit
+        const { tier, userId: internalUserId } = await getUserTier(clerkId);
+        if (internalUserId) {
+            const chatLimit = await checkChatLimit(internalUserId, tier);
+            if (!chatLimit.allowed) {
+                return NextResponse.json(
+                    {
+                        error: "Daily chat limit reached",
+                        limit: chatLimit.limit,
+                        used: chatLimit.used,
+                        upgrade: true,
+                    },
+                    { status: 429 }
+                );
+            }
         }
 
         const body = await req.json();

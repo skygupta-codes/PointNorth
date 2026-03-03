@@ -14,6 +14,7 @@ const navLinks = [
     { href: "/spending", label: "Spending" },
     { href: "/recommendations", label: "Picks" },
     { href: "/chat", label: "Chat with Maple" },
+    { href: "/billing", label: "Billing" },
 ];
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -39,8 +40,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 key={link.href}
                                 href={link.href}
                                 className={`text-sm font-medium transition hover:text-amber-600 ${pathname === link.href
-                                        ? "text-gray-900"
-                                        : "text-gray-500"
+                                    ? "text-gray-900"
+                                    : "text-gray-500"
                                     }`}
                             >
                                 {link.label}
@@ -99,8 +100,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                                 setMobileOpen(false)
                                             }
                                             className={`rounded-lg px-4 py-3 text-sm font-medium transition ${pathname === link.href
-                                                    ? "bg-amber-50 text-amber-700"
-                                                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                                                ? "bg-amber-50 text-amber-700"
+                                                : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                                                 }`}
                                         >
                                             {link.label}
