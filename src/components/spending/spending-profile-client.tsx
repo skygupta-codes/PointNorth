@@ -15,6 +15,7 @@ const CATEGORIES = [
     { key: "streaming", label: "Streaming & Subscriptions", emoji: "📺", max: 500, step: 10 },
     { key: "shopping", label: "Shopping & Retail", emoji: "🛍️", max: 2000, step: 50 },
     { key: "transit", label: "Transit & Rideshare", emoji: "🚇", max: 500, step: 25 },
+    { key: "drugstore", label: "Drugstore & Pharmacy", emoji: "💊", max: 500, step: 25 },
     { key: "other", label: "Everything Else", emoji: "💳", max: 3000, step: 50 },
 ];
 
@@ -41,7 +42,7 @@ function SpendingSkeleton() {
 export function SpendingProfileClient() {
     const [spending, setSpending] = useState<Record<string, number>>({
         groceries: 0, dining: 0, gas: 0, travel: 0,
-        streaming: 0, shopping: 0, transit: 0, other: 0,
+        streaming: 0, shopping: 0, transit: 0, drugstore: 0, other: 0,
     });
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -61,6 +62,7 @@ export function SpendingProfileClient() {
                     streaming: Number(data.profile.streaming) || 0,
                     shopping: Number(data.profile.shopping) || 0,
                     transit: Number(data.profile.transit) || 0,
+                    drugstore: Number(data.profile.drugstore) || 0,
                     other: Number(data.profile.other) || 0,
                 });
             }

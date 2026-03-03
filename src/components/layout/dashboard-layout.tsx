@@ -11,6 +11,7 @@ import { Bell, Menu, X } from "lucide-react";
 const navLinks = [
     { href: "/dashboard", label: "Dashboard" },
     { href: "/wallet", label: "My Wallet" },
+    { href: "/loyalty", label: "Loyalty" },
     { href: "/spending", label: "Spending" },
     { href: "/recommendations", label: "Picks" },
     { href: "/chat", label: "Chat with Maple" },

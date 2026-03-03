@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { getDb } from "@/db";
-import { users, userCards } from "@/db/schema";
+import { users, userCards, pointsHistory } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getUserTier, checkCardLimit } from "@/lib/subscription";
 
@@ -209,6 +209,19 @@ export async function PATCH(req: Request) {
             updates.pointsExpiry = pointsExpiry ? new Date(pointsExpiry) : null;
         if (isPrimary !== undefined) updates.isPrimary = isPrimary;
 
+        // If balance is changing, get the current balance for history
+        let previousBalance: number | null = null;
+        if (pointsBalance !== undefined) {
+            const [currentCard] = await db
+                .select({ pointsBalance: userCards.pointsBalance, cardSlug: userCards.cardSlug })
+                .from(userCards)
+                .where(and(eq(userCards.id, id), eq(userCards.userId, userId)))
+                .limit(1);
+            if (currentCard) {
+                previousBalance = currentCard.pointsBalance || 0;
+            }
+        }
+
         const [card] = await db
             .update(userCards)
             .set(updates)
@@ -216,6 +229,19 @@ export async function PATCH(req: Request) {
                 and(eq(userCards.id, id), eq(userCards.userId, userId))
             )
             .returning();
+
+        // Log to points history if balance changed
+        if (card && previousBalance !== null && pointsBalance !== previousBalance) {
+            await db.insert(pointsHistory).values({
+                userId,
+                cardSlug: card.cardSlug,
+                previousBalance,
+                newBalance: pointsBalance,
+                changeAmount: pointsBalance - previousBalance,
+                changeType: "manual",
+                note: "Balance updated via wallet",
+            });
+        }
 
         if (!card) {
             return NextResponse.json(

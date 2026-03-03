@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 import { getDb } from "@/db";
-import { users, userCards, spendingProfiles, chatMessages } from "@/db/schema";
+import { users, userCards, spendingProfiles, chatMessages, userLoyaltyAccounts } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { getCardBySlug } from "@/lib/cards";
 import { getUserTier, checkChatLimit } from "@/lib/subscription";
@@ -74,12 +74,30 @@ async function buildUserContext(clerkId: string): Promise<string> {
 - Streaming: $${profile.streaming}/mo
 - Shopping: $${profile.shopping}/mo
 - Transit: $${profile.transit}/mo
+- Drugstore: $${profile.drugstore}/mo
 - Other: $${profile.other}/mo`;
     } else {
         spendingContext = "\n\nUSER'S SPENDING PROFILE: Not set up yet.";
     }
 
-    return `User: ${user.name || user.email}${walletContext}${spendingContext}`;
+    // Loyalty accounts
+    const loyaltyAccounts = await db
+        .select()
+        .from(userLoyaltyAccounts)
+        .where(eq(userLoyaltyAccounts.userId, user.id));
+
+    let loyaltyContext = "";
+    if (loyaltyAccounts.length > 0) {
+        loyaltyContext = "\n\nUSER'S LOYALTY PROGRAMS:\n";
+        for (const la of loyaltyAccounts) {
+            loyaltyContext += `- ${la.program}: ${(la.currentBalance ?? 0).toLocaleString()} points`;
+            if (la.statusTier) loyaltyContext += ` (${la.statusTier})`;
+            if (la.pointsExpiryDate) loyaltyContext += ` — expires: ${la.pointsExpiryDate}`;
+            loyaltyContext += "\n";
+        }
+    }
+
+    return `User: ${user.name || user.email}${walletContext}${spendingContext}${loyaltyContext}`;
 }
 
 const SYSTEM_PROMPT = `You are Maple 🍁, the friendly and knowledgeable AI rewards advisor for TrueNorthPoints.ca — a Canadian credit card rewards optimizer.

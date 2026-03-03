@@ -10,6 +10,8 @@ import {
     jsonb,
     boolean,
     decimal,
+    date,
+    uniqueIndex,
 } from "drizzle-orm/pg-core";
 
 // Users (synced from Clerk via webhook)
@@ -66,6 +68,41 @@ export const spendingProfiles = pgTable("spending_profiles", {
     streaming: decimal("streaming").default("0"),
     shopping: decimal("shopping").default("0"),
     transit: decimal("transit").default("0"),
+    drugstore: decimal("drugstore").default("0"),
     other: decimal("other").default("0"),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
+
+// Points balance history (audit trail)
+export const pointsHistory = pgTable("points_history", {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+        .references(() => users.id, { onDelete: "cascade" })
+        .notNull(),
+    cardSlug: text("card_slug").notNull(),
+    previousBalance: integer("previous_balance").notNull(),
+    newBalance: integer("new_balance").notNull(),
+    changeAmount: integer("change_amount").notNull(),
+    changeType: text("change_type").notNull(), // 'manual' | 'earned' | 'redeemed' | 'expired' | 'transfer'
+    note: text("note"),
+    recordedAt: timestamp("recorded_at").defaultNow(),
+});
+
+// Standalone loyalty program accounts (Aeroplan, Air Miles, etc.)
+export const userLoyaltyAccounts = pgTable(
+    "user_loyalty_accounts",
+    {
+        id: uuid("id").primaryKey().defaultRandom(),
+        userId: uuid("user_id")
+            .references(() => users.id, { onDelete: "cascade" })
+            .notNull(),
+        program: text("program").notNull(), // 'aeroplan' | 'air-miles' | 'westjet' | 'scene' | 'pc-optimum' | 'triangle' | 'marriott' | 'hilton'
+        accountNumber: text("account_number"),
+        currentBalance: integer("current_balance").default(0),
+        statusTier: text("status_tier"),
+        pointsExpiryDate: date("points_expiry_date"),
+        createdAt: timestamp("created_at").defaultNow(),
+        updatedAt: timestamp("updated_at").defaultNow(),
+    },
+    (table) => [uniqueIndex("user_program_idx").on(table.userId, table.program)]
+);
