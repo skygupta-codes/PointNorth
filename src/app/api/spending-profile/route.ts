@@ -68,7 +68,7 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { groceries, dining, gas, travel, streaming, shopping, transit, other } = body;
+        const { groceries, dining, gas, travel, streaming, shopping, transit, drugstore, other } = body;
 
         const db = getDb();
 
@@ -87,6 +87,7 @@ export async function POST(req: Request) {
             streaming: String(streaming || 0),
             shopping: String(shopping || 0),
             transit: String(transit || 0),
+            drugstore: String(drugstore || 0),
             other: String(other || 0),
             updatedAt: new Date(),
         };
