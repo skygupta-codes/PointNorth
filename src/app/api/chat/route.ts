@@ -97,7 +97,49 @@ async function buildUserContext(clerkId: string): Promise<string> {
         }
     }
 
-    return `User: ${user.name || user.email}${walletContext}${spendingContext}${loyaltyContext}`;
+    // Aeroplan intelligence
+    const aeroplanAccount = loyaltyAccounts.find((la) => la.program === "aeroplan");
+    const AEROPLAN_TRANSFER_CURRENCIES = ["mr", "td-points", "rbc-avion", "cibc-aventura"];
+    const transferCards = cards
+        .map((uc) => {
+            const details = getCardBySlug(uc.cardSlug);
+            if (!details) return null;
+            if (!AEROPLAN_TRANSFER_CURRENCIES.includes(details.rewardsCurrency)) return null;
+            return { name: details.name, balance: uc.pointsBalance ?? 0, currency: details.rewardsCurrency };
+        })
+        .filter(Boolean) as { name: string; balance: number; currency: string }[];
+
+    let aeroplanContext = "\n\nAEROPLAN INTELLIGENCE:\n";
+    if (aeroplanAccount) {
+        aeroplanContext += `Balance: ${(aeroplanAccount.currentBalance ?? 0).toLocaleString()} Aeroplan points\n`;
+        aeroplanContext += `Status Tier: ${aeroplanAccount.statusTier || "No status"}\n`;
+        if (aeroplanAccount.pointsExpiryDate) {
+            aeroplanContext += `Points Expiry: ${aeroplanAccount.pointsExpiryDate}\n`;
+        }
+    } else {
+        aeroplanContext += "Balance: Not linked\n";
+    }
+
+    if (transferCards.length > 0) {
+        aeroplanContext += "\nAeroplan Transfer Partners in Wallet:\n";
+        for (const tc of transferCards) {
+            aeroplanContext += `- ${tc.name}: ${tc.balance.toLocaleString()} ${tc.currency} (1:1 transfer ratio)\n`;
+        }
+    }
+
+    aeroplanContext += `
+TOP AEROPLAN SWEET SPOTS:
+- YYZ/YVR → London via Lufthansa/SWISS Business: 65,000 miles, ~$4,500 CAD cash = 6.9¢/mile EXCEPTIONAL — NO fuel surcharges
+- YVR → Tokyo via ANA Business: 75,000 miles, ~$6,200 CAD cash = 10.7¢/mile EXCEPTIONAL
+- YYZ → Paris via Air France Business: 65,000 miles, ~$4,200 CAD cash = 6.5¢/mile EXCEPTIONAL
+- Canada → Hawaii Economy: 12,500 miles, ~$550 CAD cash = 4.4¢/mile GREAT
+- Canadian domestic short-haul Economy: 6,000 miles one-way
+
+FUEL SURCHARGE RULE: Always recommend non-Air Canada operated transatlantic flights (Lufthansa, SWISS, Air France, ANA) to avoid YQ surcharges up to $900 CAD.
+
+CALCULATION RULE: When user asks about redemption value, always show the math: (cash price - taxes) / miles × 100 = cents per mile. Ratings: ≥6¢ = Exceptional, ≥3¢ = Great, ≥2¢ = Good, <2¢ = Poor.`;
+
+    return `User: ${user.name || user.email}${walletContext}${spendingContext}${loyaltyContext}${aeroplanContext}`;
 }
 
 const SYSTEM_PROMPT = `You are Maple 🍁, the friendly and knowledgeable AI rewards advisor for TrueNorthPoints.ca — a Canadian credit card rewards optimizer.

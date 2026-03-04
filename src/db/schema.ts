@@ -106,3 +106,12 @@ export const userLoyaltyAccounts = pgTable(
     },
     (table) => [uniqueIndex("user_program_idx").on(table.userId, table.program)]
 );
+
+// Award search cache (shared cache, no user ownership)
+export const awardSearchCache = pgTable("award_search_cache", {
+    id: uuid("id").primaryKey().defaultRandom(),
+    cacheKey: text("cache_key").unique().notNull(),
+    resultJson: jsonb("result_json").notNull(),
+    cachedAt: timestamp("cached_at", { withTimezone: true }).defaultNow(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+});

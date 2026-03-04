@@ -12,7 +12,10 @@ import {
     TrendingUp,
     Award,
     MapPin,
+    ArrowRightLeft,
+    CreditCard,
 } from "lucide-react";
+import { getCardBySlug } from "@/lib/cards";
 import {
     SWEET_SPOTS,
     RATING_STYLES,
@@ -429,6 +432,154 @@ function SweetSpotsGrid() {
     );
 }
 
+// ─── TRANSFER PARTNERS ─────────────────────────────────
+
+const AEROPLAN_TRANSFER_CURRENCIES = ["mr", "td-points", "rbc-avion", "cibc-aventura"] as const;
+
+const TRANSFER_TIME_MAP: Record<string, string> = {
+    "mr": "1–3 business days",
+    "td-points": "Instant",
+    "rbc-avion": "1–2 business days",
+    "cibc-aventura": "1–2 business days",
+};
+
+interface TransferCard {
+    name: string;
+    issuer: string;
+    balance: number;
+    currency: string;
+    transferTime: string;
+}
+
+function TransferPartners() {
+    const [transferCards, setTransferCards] = useState<TransferCard[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchCards() {
+            try {
+                const res = await fetch("/api/cards");
+                if (!res.ok) return;
+                const data = await res.json();
+                const matched: TransferCard[] = [];
+                for (const uc of data.cards || []) {
+                    const details = getCardBySlug(uc.cardSlug);
+                    if (!details) continue;
+                    const currency = details.rewardsCurrency.toLowerCase();
+                    if ((AEROPLAN_TRANSFER_CURRENCIES as readonly string[]).includes(currency)) {
+                        matched.push({
+                            name: details.name,
+                            issuer: details.issuer,
+                            balance: uc.pointsBalance ?? 0,
+                            currency,
+                            transferTime: TRANSFER_TIME_MAP[currency] || "Varies",
+                        });
+                    }
+                }
+                setTransferCards(matched);
+            } catch {
+                // ignore
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchCards();
+    }, []);
+
+    if (loading) {
+        return (
+            <Card className="border-gray-200 bg-white shadow-sm">
+                <CardContent className="flex items-center justify-center p-8">
+                    <p className="text-sm text-gray-400">Loading transfer partners…</p>
+                </CardContent>
+            </Card>
+        );
+    }
+
+    const totalTransferable = transferCards.reduce((sum, c) => sum + c.balance, 0);
+
+    if (transferCards.length === 0) {
+        return (
+            <Card className="border-gray-200 bg-white shadow-sm">
+                <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base">
+                        <ArrowRightLeft className="h-5 w-5 text-green-600" />
+                        Transfer Partners
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+                        <CreditCard className="mx-auto mb-3 h-8 w-8 text-gray-300" />
+                        <p className="mb-3 text-sm text-gray-600">
+                            None of your current cards transfer to Aeroplan. Consider:
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center gap-2">
+                            <Badge className="bg-blue-50 text-blue-700">
+                                Amex Cobalt — earn 5x MR, transfer 1:1
+                            </Badge>
+                            <Badge className="bg-green-50 text-green-700">
+                                TD Aeroplan Visa Infinite
+                            </Badge>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        );
+    }
+
+    return (
+        <Card className="border-gray-200 bg-white shadow-sm">
+            <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-base">
+                    <ArrowRightLeft className="h-5 w-5 text-green-600" />
+                    Transfer Partners
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="divide-y divide-gray-100">
+                    {transferCards.map((tc, i) => (
+                        <div
+                            key={i}
+                            className="flex items-center justify-between py-3 first:pt-0 last:pb-0"
+                        >
+                            <div className="flex-1">
+                                <p className="text-sm font-medium text-gray-900">
+                                    {tc.name}
+                                </p>
+                                <p className="text-xs text-gray-400">{tc.issuer}</p>
+                            </div>
+                            <div className="mx-4 text-right">
+                                <p className="text-sm font-bold text-gray-900">
+                                    {tc.balance.toLocaleString()}
+                                </p>
+                                <p className="text-[10px] text-gray-400">{tc.currency}</p>
+                            </div>
+                            <div className="flex flex-col items-end gap-1">
+                                <Badge className="bg-green-50 text-green-700 text-[10px]">
+                                    1:1 → Aeroplan
+                                </Badge>
+                                <span className="text-[10px] text-gray-400">
+                                    {tc.transferTime}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Total row */}
+                <div className="mt-4 flex items-center justify-between rounded-md bg-green-50 px-4 py-3">
+                    <p className="text-sm font-medium text-green-800">
+                        Total transferable
+                    </p>
+                    <p className="text-lg font-bold text-green-900">
+                        {totalTransferable.toLocaleString()} miles
+                    </p>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
 // ─── MAIN PAGE ─────────────────────────────────────────
 
 export default function AeroplanPage() {
@@ -551,6 +702,11 @@ export default function AeroplanPage() {
                     ))}
                 </div>
             )}
+
+            {/* Transfer Partners */}
+            <div className="mt-6">
+                <TransferPartners />
+            </div>
         </div>
     );
 }
