@@ -13,6 +13,7 @@ const navLinks = [
     { href: "/wallet", label: "My Wallet" },
     { href: "/loyalty", label: "Loyalty" },
     { href: "/aeroplan", label: "Aeroplan" },
+    { href: "/travel", label: "Travel ✈️" },
     { href: "/spending", label: "Spending" },
     { href: "/recommendations", label: "Picks" },
     { href: "/chat", label: "Chat with Maple" },
