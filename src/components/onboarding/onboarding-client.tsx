@@ -72,7 +72,7 @@ export function OnboardingClient({ hasCards, hasSpending }: { hasCards: boolean;
 
                     return (
                         <Link key={step.id} href={step.href}>
-                            <Card className={`cursor-pointer border-gray-200 bg-white shadow-sm transition-all hover:shadow-md ${done ? colors.border : ""}`}>
+                            <Card className={`cursor-pointer border-gray-200 bg-white shadow-sm transition-all active:shadow-md ${done ? colors.border : ""}`}>
                                 <CardContent className="flex items-center gap-4 p-5">
                                     <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${done ? "bg-emerald-50" : colors.bg}`}>
                                         {done ? (<Check className="h-5 w-5 text-emerald-500" />) : (<Icon className={`h-5 w-5 ${colors.text}`} />)}
@@ -91,12 +91,12 @@ export function OnboardingClient({ hasCards, hasSpending }: { hasCards: boolean;
 
             <div className="mt-8 flex items-center gap-4">
                 {currentStep >= 2 ? (
-                    <Button onClick={handleComplete} disabled={completing} className="bg-amber-500 text-white hover:bg-amber-600">
+                    <Button onClick={handleComplete} disabled={completing} className="bg-amber-500 text-white active:bg-amber-600">
                         {completing ? "Setting up..." : "Go to Dashboard"}
                         <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                 ) : (
-                    <Button variant="ghost" onClick={handleComplete} disabled={completing} className="text-gray-400 hover:text-gray-600">
+                    <Button variant="ghost" onClick={handleComplete} disabled={completing} className="text-gray-400 active:text-gray-600">
                         Skip for now
                     </Button>
                 )}

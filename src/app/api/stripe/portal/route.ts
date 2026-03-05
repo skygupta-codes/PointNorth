@@ -8,16 +8,16 @@ import { getStripe, isStripeConfigured } from "@/lib/stripe";
 // POST /api/stripe/portal — Redirect user to Stripe Customer Portal
 export async function POST() {
     try {
+        const { userId: clerkId } = await auth();
+        if (!clerkId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
         if (!isStripeConfigured()) {
             return NextResponse.json(
                 { error: "Stripe is not configured" },
                 { status: 503 }
             );
-        }
-
-        const { userId: clerkId } = await auth();
-        if (!clerkId) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
         const db = getDb();

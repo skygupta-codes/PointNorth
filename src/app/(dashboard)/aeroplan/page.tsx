@@ -64,7 +64,7 @@ function StatusTracker({ balance }: { balance: number | null }) {
                     <a href="/loyalty">
                         <Button
                             variant="outline"
-                            className="border-green-200 text-green-700 hover:bg-green-50"
+                            className="border-green-200 text-green-700 active:bg-green-50"
                         >
                             Add Aeroplan Account
                         </Button>
@@ -221,7 +221,7 @@ function ZoneCalculator() {
                                 {originResults.map((a) => (
                                     <button
                                         key={a.code}
-                                        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-green-50"
+                                        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm active:bg-green-50"
                                         onMouseDown={() => {
                                             setSelectedOrigin(a);
                                             setOriginQuery(
@@ -273,7 +273,7 @@ function ZoneCalculator() {
                                 {destResults.map((a) => (
                                     <button
                                         key={a.code}
-                                        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-green-50"
+                                        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm active:bg-green-50"
                                         onMouseDown={() => {
                                             setSelectedDest(a);
                                             setDestQuery(
@@ -347,7 +347,7 @@ function SweetSpotsGrid() {
                 return (
                     <Card
                         key={spot.id}
-                        className="group border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
+                        className="group border-gray-200 bg-white shadow-sm transition-all active:shadow-md"
                     >
                         <CardHeader className="pb-2">
                             <div className="flex items-start justify-between">
@@ -647,7 +647,7 @@ export default function AeroplanPage() {
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${activeTab === tab.id
                             ? "bg-white text-gray-900 shadow-sm"
-                            : "text-gray-500 hover:text-gray-700"
+                            : "text-gray-500 active:text-gray-700"
                             }`}
                     >
                         <span>{tab.icon}</span>

@@ -106,7 +106,7 @@ export function WalletCard({
                             <Button
                                 size="sm"
                                 onClick={handleSave}
-                                className="bg-emerald-500 text-white hover:bg-emerald-600"
+                                className="bg-emerald-500 text-white active:bg-emerald-600"
                             >
                                 <Check className="mr-1 h-3 w-3" />
                                 Save
@@ -161,7 +161,7 @@ export function WalletCard({
                                 size="sm"
                                 variant="outline"
                                 onClick={() => setEditing(true)}
-                                className="flex-1 border-gray-200 text-gray-600 hover:text-gray-900"
+                                className="flex-1 border-gray-200 text-gray-600 active:text-gray-900"
                             >
                                 <Pencil className="mr-1 h-3 w-3" />
                                 Edit
@@ -170,7 +170,7 @@ export function WalletCard({
                                 size="sm"
                                 variant="outline"
                                 onClick={() => onDelete(userCard.id)}
-                                className="border-gray-200 text-rose-500 hover:bg-rose-50 hover:text-rose-600"
+                                className="border-gray-200 text-rose-500 active:bg-rose-50 active:text-rose-600"
                             >
                                 <Trash2 className="h-3 w-3" />
                             </Button>

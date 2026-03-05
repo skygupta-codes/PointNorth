@@ -97,13 +97,13 @@ export function RecommendationsClient() {
                 </p>
                 <div className="flex gap-3">
                     <Link href="/wallet">
-                        <Button variant="outline" className="border-gray-200 text-gray-700 hover:text-gray-900">
+                        <Button variant="outline" className="border-gray-200 text-gray-700 active:text-gray-900">
                             <CreditCard className="mr-2 h-4 w-4" />
                             Add Cards
                         </Button>
                     </Link>
                     <Link href="/spending">
-                        <Button className="bg-amber-500 text-white hover:bg-amber-600">
+                        <Button className="bg-amber-500 text-white active:bg-amber-600">
                             <DollarSign className="mr-2 h-4 w-4" />
                             Set Up Spending
                         </Button>
@@ -228,7 +228,7 @@ export function RecommendationsClient() {
                     </div>
                     <div className="mt-4 text-center">
                         <Link href="/wallet">
-                            <Button variant="outline" className="border-gray-200 text-gray-700 hover:text-gray-900">
+                            <Button variant="outline" className="border-gray-200 text-gray-700 active:text-gray-900">
                                 Add a Card to Your Wallet <ArrowRight className="ml-2 h-4 w-4" />
                             </Button>
                         </Link>

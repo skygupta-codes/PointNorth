@@ -186,7 +186,7 @@ export default function LoyaltyPage() {
                 </div>
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                     <DialogTrigger asChild>
-                        <Button className="bg-amber-500 text-white hover:bg-amber-600">
+                        <Button className="bg-amber-500 text-white active:bg-amber-600">
                             <Plus className="mr-2 h-4 w-4" />
                             Add Program
                         </Button>
@@ -265,7 +265,7 @@ export default function LoyaltyPage() {
                             )}
 
                             <Button
-                                className="w-full bg-amber-500 text-white hover:bg-amber-600"
+                                className="w-full bg-amber-500 text-white active:bg-amber-600"
                                 onClick={handleAdd}
                                 disabled={!selectedProgram || submitting}
                             >
@@ -344,7 +344,7 @@ export default function LoyaltyPage() {
                             loyalty program accounts to track your total rewards portfolio.
                         </p>
                         <Button
-                            className="bg-amber-500 text-white hover:bg-amber-600"
+                            className="bg-amber-500 text-white active:bg-amber-600"
                             onClick={() => setDialogOpen(true)}
                         >
                             <Plus className="mr-2 h-4 w-4" />
@@ -362,7 +362,7 @@ export default function LoyaltyPage() {
                         return (
                             <Card
                                 key={account.id}
-                                className="border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                                className="border-gray-200 bg-white shadow-sm transition-shadow active:shadow-md"
                             >
                                 <CardHeader className="pb-2">
                                     <div className="flex items-center justify-between">
@@ -389,7 +389,7 @@ export default function LoyaltyPage() {
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            className="h-8 w-8 text-gray-400 hover:text-red-500"
+                                            className="h-8 w-8 text-gray-400 active:text-red-500"
                                             onClick={() => handleDelete(account.id)}
                                         >
                                             <Trash2 className="h-4 w-4" />
@@ -412,7 +412,7 @@ export default function LoyaltyPage() {
                                                     />
                                                     <Button
                                                         size="icon"
-                                                        className="h-8 w-8 bg-emerald-500 hover:bg-emerald-600"
+                                                        className="h-8 w-8 bg-emerald-500 active:bg-emerald-600"
                                                         onClick={() =>
                                                             handleUpdateBalance(account.id)
                                                         }
@@ -446,7 +446,7 @@ export default function LoyaltyPage() {
                                                     <span className="text-xs text-gray-400">
                                                         {prog.currency}
                                                     </span>
-                                                    <Edit2 className="h-3 w-3 text-gray-300 opacity-0 group-hover:opacity-100" />
+                                                    <Edit2 className="h-3 w-3 text-gray-300 opacity-0 group-active:opacity-100" />
                                                 </div>
                                             )}
                                             <p className="mt-1 text-xs text-gray-400">

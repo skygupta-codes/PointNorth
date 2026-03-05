@@ -200,7 +200,7 @@ export default async function DashboardPage() {
                             Smart Picks
                         </h2>
                         <Link href="/recommendations">
-                            <Button variant="ghost" size="sm" className="text-amber-600 hover:text-amber-700">
+                            <Button variant="ghost" size="sm" className="text-amber-600 active:text-amber-700">
                                 View All <ArrowRight className="ml-1 h-4 w-4" />
                             </Button>
                         </Link>
@@ -271,7 +271,7 @@ export default async function DashboardPage() {
             {/* Setup prompt */}
             {walletCards.length > 0 && !data?.hasSpendingProfile && (
                 <Link href="/spending">
-                    <Card className="mb-8 cursor-pointer border-amber-200 bg-amber-50 transition-all hover:bg-amber-100">
+                    <Card className="mb-8 cursor-pointer border-amber-200 bg-amber-50 transition-all active:bg-amber-100">
                         <CardContent className="flex items-center gap-4 p-6">
                             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100">
                                 <DollarSign className="h-6 w-6 text-amber-600" />
@@ -293,7 +293,7 @@ export default async function DashboardPage() {
                 <h2 className="mb-4 text-lg font-semibold text-gray-900">Quick Actions</h2>
                 <div className="grid gap-4 md:grid-cols-2">
                     <Link href="/wallet">
-                        <Card className="group cursor-pointer border-gray-200 bg-white shadow-sm transition-all hover:border-amber-300 hover:shadow-md">
+                        <Card className="group cursor-pointer border-gray-200 bg-white shadow-sm transition-all active:border-amber-300 active:shadow-md">
                             <CardContent className="flex items-center gap-4 p-6">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
                                     <Plus className="h-6 w-6 text-amber-600" />
@@ -316,7 +316,7 @@ export default async function DashboardPage() {
                     </Link>
 
                     <Link href="/chat">
-                        <Card className="group cursor-pointer border-gray-200 bg-white shadow-sm transition-all hover:border-emerald-300 hover:shadow-md">
+                        <Card className="group cursor-pointer border-gray-200 bg-white shadow-sm transition-all active:border-emerald-300 active:shadow-md">
                             <CardContent className="flex items-center gap-4 p-6">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
                                     <MessageCircle className="h-6 w-6 text-emerald-600" />
@@ -346,7 +346,7 @@ export default async function DashboardPage() {
                             Add your Canadian credit cards to start tracking points and get smart recommendations.
                         </p>
                         <Link href="/wallet">
-                            <Button className="bg-amber-500 text-white hover:bg-amber-600">
+                            <Button className="bg-amber-500 text-white active:bg-amber-600">
                                 <Plus className="mr-2 h-4 w-4" />
                                 Add a Card
                             </Button>
@@ -359,7 +359,7 @@ export default async function DashboardPage() {
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                         {enrichedCards.slice(0, 6).map((card) => (
                             <Link key={card.id} href="/wallet">
-                                <Card className="border-gray-200 bg-white shadow-sm transition-all hover:border-gray-300 hover:shadow-md">
+                                <Card className="border-gray-200 bg-white shadow-sm transition-all active:border-gray-300 active:shadow-md">
                                     <CardContent className="p-4">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-2">

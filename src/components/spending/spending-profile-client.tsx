@@ -120,7 +120,7 @@ export function SpendingProfileClient() {
                         Tell us how much you spend monthly in each category so we can recommend the best cards.
                     </p>
                 </div>
-                <Button onClick={handleSave} disabled={saving} className="bg-amber-500 text-white hover:bg-amber-600 shrink-0">
+                <Button onClick={handleSave} disabled={saving} className="bg-amber-500 text-white active:bg-amber-600 shrink-0">
                     {saved ? (<><Check className="mr-2 h-4 w-4" />Saved!</>) : saving ? "Saving..." : (<><Save className="mr-2 h-4 w-4" />Save Profile</>)}
                 </Button>
             </div>
@@ -184,7 +184,7 @@ export function SpendingProfileClient() {
 
             {/* Mobile save */}
             <div className="mt-6 flex justify-center sm:hidden">
-                <Button onClick={handleSave} disabled={saving} className="w-full bg-amber-500 text-white hover:bg-amber-600">
+                <Button onClick={handleSave} disabled={saving} className="w-full bg-amber-500 text-white active:bg-amber-600">
                     {saved ? (<><Check className="mr-2 h-4 w-4" />Saved!</>) : (<><Save className="mr-2 h-4 w-4" />Save Profile</>)}
                 </Button>
             </div>

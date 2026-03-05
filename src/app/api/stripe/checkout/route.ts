@@ -8,16 +8,16 @@ import { getStripe, STRIPE_PRICES, isStripeConfigured } from "@/lib/stripe";
 // POST /api/stripe/checkout — Create a Stripe Checkout session for upgrading
 export async function POST(req: Request) {
     try {
+        const { userId: clerkId } = await auth();
+        if (!clerkId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
         if (!isStripeConfigured()) {
             return NextResponse.json(
                 { error: "Stripe is not configured" },
                 { status: 503 }
             );
-        }
-
-        const { userId: clerkId } = await auth();
-        if (!clerkId) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
         const body = await req.json();

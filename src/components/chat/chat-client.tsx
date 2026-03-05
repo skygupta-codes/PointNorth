@@ -144,7 +144,7 @@ export function ChatClient() {
                         variant="ghost"
                         size="sm"
                         onClick={handleClear}
-                        className="text-gray-400 hover:text-gray-600"
+                        className="text-gray-400 active:text-gray-600"
                     >
                         <Trash2 className="mr-1 h-4 w-4" />
                         Clear
@@ -174,7 +174,7 @@ export function ChatClient() {
                                 <button
                                     key={prompt}
                                     onClick={() => sendMessage(prompt)}
-                                    className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 p-3 text-left text-sm text-gray-700 transition hover:border-amber-300 hover:bg-amber-50"
+                                    className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 p-3 text-left text-sm text-gray-700 transition active:border-amber-300 active:bg-amber-50"
                                 >
                                     <MessageCircle className="h-4 w-4 shrink-0 text-amber-500" />
                                     <span>{prompt}</span>
@@ -191,8 +191,8 @@ export function ChatClient() {
                             >
                                 <div
                                     className={`max-w-[85%] rounded-2xl px-4 py-3 ${msg.role === "user"
-                                            ? "bg-amber-500 text-white"
-                                            : "bg-gray-100 text-gray-900"
+                                        ? "bg-amber-500 text-white"
+                                        : "bg-gray-100 text-gray-900"
                                         }`}
                                 >
                                     {msg.role === "assistant" && (
@@ -244,7 +244,7 @@ export function ChatClient() {
                 <Button
                     onClick={() => sendMessage(input)}
                     disabled={!input.trim() || loading}
-                    className="bg-amber-500 text-white hover:bg-amber-600 disabled:opacity-50"
+                    className="bg-amber-500 text-white active:bg-amber-600 disabled:opacity-50"
                 >
                     <Send className="h-4 w-4" />
                 </Button>

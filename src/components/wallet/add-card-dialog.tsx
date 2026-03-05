@@ -64,7 +64,7 @@ export function AddCardDialog({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-amber-500 text-white hover:bg-amber-600">
+                <Button className="bg-amber-500 text-white active:bg-amber-600">
                     <Plus className="mr-2 h-4 w-4" />
                     Add a Card
                 </Button>
@@ -92,7 +92,7 @@ export function AddCardDialog({
                                 <button
                                     key={card.slug}
                                     onClick={() => setSelected(card)}
-                                    className="flex w-full items-center gap-3 rounded-lg border border-gray-200 p-3 text-left transition hover:border-amber-300 hover:bg-amber-50"
+                                    className="flex w-full items-center gap-3 rounded-lg border border-gray-200 p-3 text-left transition active:border-amber-300 active:bg-amber-50"
                                 >
                                     <CreditCard className="h-5 w-5 text-gray-400 shrink-0" />
                                     <div className="flex-1 min-w-0">
@@ -186,7 +186,7 @@ export function AddCardDialog({
 
                         <Button
                             onClick={handleAdd}
-                            className="w-full bg-amber-500 text-white hover:bg-amber-600"
+                            className="w-full bg-amber-500 text-white active:bg-amber-600"
                         >
                             <Plus className="mr-2 h-4 w-4" />
                             Add to Wallet

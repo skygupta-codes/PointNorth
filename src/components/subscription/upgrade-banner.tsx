@@ -31,7 +31,7 @@ export function UpgradeBanner({
                     </div>
                 </div>
                 <Link href="/upgrade" className="shrink-0">
-                    <Button size="sm" className="bg-amber-500 text-white hover:bg-amber-600">
+                    <Button size="sm" className="bg-amber-500 text-white active:bg-amber-600">
                         Upgrade Now
                         <ArrowRight className="ml-1 h-4 w-4" />
                     </Button>
