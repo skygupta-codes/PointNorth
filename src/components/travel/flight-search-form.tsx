@@ -173,15 +173,15 @@ export default function FlightSearchForm({ onSearch, isLoading = false }: Flight
                                 onChange={(e) => origin.handleChange(e.target.value)}
                                 onFocus={() => origin.setShowDropdown(true)}
                                 onBlur={() => setTimeout(() => origin.setShowDropdown(false), 200)}
-                                className="pl-9"
+                                className="pl-9 min-h-[44px]"
                             />
                         </div>
                         {origin.showDropdown && origin.results.length > 0 && (
-                            <div className="absolute z-10 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-lg">
-                                {origin.results.map((a) => (
+                            <div className="absolute z-10 mt-1 w-full max-h-[220px] overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg">
+                                {origin.results.slice(0, 5).map((a) => (
                                     <button
                                         key={a.iataCode}
-                                        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-green-50"
+                                        className="flex w-full items-center gap-2 px-3 min-h-[44px] py-2 text-left text-sm active:bg-green-50 transition-colors"
                                         onMouseDown={() => origin.selectAirport(a)}
                                     >
                                         <span>{COUNTRY_FLAGS[a.country]}</span>
@@ -212,15 +212,15 @@ export default function FlightSearchForm({ onSearch, isLoading = false }: Flight
                                 onChange={(e) => destination.handleChange(e.target.value)}
                                 onFocus={() => destination.setShowDropdown(true)}
                                 onBlur={() => setTimeout(() => destination.setShowDropdown(false), 200)}
-                                className="pl-9"
+                                className="pl-9 min-h-[44px]"
                             />
                         </div>
                         {destination.showDropdown && destination.results.length > 0 && (
-                            <div className="absolute z-10 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-lg">
-                                {destination.results.map((a) => (
+                            <div className="absolute z-10 mt-1 w-full max-h-[220px] overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg">
+                                {destination.results.slice(0, 5).map((a) => (
                                     <button
                                         key={a.iataCode}
-                                        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-green-50"
+                                        className="flex w-full items-center gap-2 px-3 min-h-[44px] py-2 text-left text-sm active:bg-green-50 transition-colors"
                                         onMouseDown={() => destination.selectAirport(a)}
                                     >
                                         <span>{COUNTRY_FLAGS[a.country]}</span>
@@ -263,9 +263,9 @@ export default function FlightSearchForm({ onSearch, isLoading = false }: Flight
                                 <button
                                     key={c.value}
                                     onClick={() => setCabin(c.value)}
-                                    className={`flex-1 rounded px-2 py-1.5 text-[11px] font-medium transition-colors ${cabin === c.value
-                                            ? `${c.color} shadow-sm`
-                                            : "text-gray-400 hover:text-gray-600"
+                                    className={`flex-1 rounded px-2 min-h-[44px] py-2 text-[11px] font-medium transition-colors ${cabin === c.value
+                                        ? `${c.color} shadow-sm`
+                                        : "text-gray-400 active:text-gray-600"
                                         }`}
                                 >
                                     {c.label}
@@ -280,7 +280,7 @@ export default function FlightSearchForm({ onSearch, isLoading = false }: Flight
                     id="flight-search-submit"
                     onClick={handleSubmit}
                     disabled={!canSearch}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    className="w-full min-h-[48px] bg-green-600 active:bg-green-700 text-white"
                 >
                     {isLoading ? (
                         <>

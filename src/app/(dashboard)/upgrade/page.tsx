@@ -15,8 +15,10 @@ import {
     Plane,
     Users,
     Bell,
+    ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
+import { isNativeApp } from "@/lib/native";
 
 const plans = [
     {
@@ -127,6 +129,27 @@ export default function UpgradePage() {
         }
     }
 
+    // iOS App Store compliance: hide Stripe checkout in native binary
+    if (isNativeApp()) {
+        return (
+            <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
+                <Crown className="mb-4 h-12 w-12 text-amber-500" />
+                <h1 className="mb-2 text-2xl font-bold text-gray-900">
+                    Manage Your Subscription
+                </h1>
+                <p className="mb-6 max-w-sm text-sm text-gray-600">
+                    To subscribe or manage your plan, visit truenorthpoints.ca in Safari.
+                </p>
+                <a
+                    href="https://truenorthpoints.ca/upgrade"
+                    className="inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-white active:bg-amber-600 transition-colors"
+                >
+                    Open in Safari <ExternalLink className="h-4 w-4" />
+                </a>
+            </div>
+        );
+    }
+
     return (
         <div className="py-8">
             {/* Header */}
@@ -157,7 +180,7 @@ export default function UpgradePage() {
                     return (
                         <Card
                             key={plan.id}
-                            className={`relative overflow-hidden border-2 bg-white shadow-sm transition-all hover:shadow-lg ${plan.popular ? colors.border : "border-gray-200"
+                            className={`relative overflow-hidden border-2 bg-white shadow-sm transition-all active:shadow-lg ${plan.popular ? colors.border : "border-gray-200"
                                 }`}
                         >
                             {plan.popular && (

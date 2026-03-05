@@ -12,9 +12,11 @@ import {
     ArrowRight,
     Settings,
     CheckCircle2,
+    ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { isNativeApp } from "@/lib/native";
 
 interface SubscriptionData {
     tier: string;
@@ -101,6 +103,30 @@ export default function BillingPage() {
     const config = tierConfig[tier] || tierConfig.free;
     const TierIcon = config.icon;
 
+    // iOS App Store compliance: hide Stripe billing in native binary
+    if (isNativeApp()) {
+        return (
+            <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
+                <Settings className="mb-4 h-12 w-12 text-gray-400" />
+                <h1 className="mb-2 text-2xl font-bold text-gray-900">
+                    Billing & Subscription
+                </h1>
+                <p className="mb-2 text-sm text-gray-600">
+                    Current plan: <span className={`font-semibold ${config.color}`}>{config.label}</span>
+                </p>
+                <p className="mb-6 max-w-sm text-sm text-gray-500">
+                    To manage your subscription, visit truenorthpoints.ca in Safari.
+                </p>
+                <a
+                    href="https://truenorthpoints.ca/billing"
+                    className="inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-white active:bg-amber-600 transition-colors"
+                >
+                    Open in Safari <ExternalLink className="h-4 w-4" />
+                </a>
+            </div>
+        );
+    }
+
     return (
         <div className="py-8">
             <div className="mb-8">
@@ -135,7 +161,7 @@ export default function BillingPage() {
                         <div className="flex gap-3 pt-2">
                             {tier === "free" ? (
                                 <Link href="/upgrade">
-                                    <Button className="bg-amber-500 text-white hover:bg-amber-600">
+                                    <Button className="bg-amber-500 text-white active:bg-amber-600 min-h-[48px]">
                                         Upgrade Plan
                                         <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
@@ -229,7 +255,7 @@ export default function BillingPage() {
                                 )}
                                 {tier === "free" && (
                                     <Link href="/upgrade">
-                                        <Badge className="cursor-pointer bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100">
+                                        <Badge className="cursor-pointer bg-amber-50 text-amber-600 border-amber-200 active:bg-amber-100">
                                             Upgrade for more
                                             <ArrowRight className="ml-1 h-3 w-3" />
                                         </Badge>

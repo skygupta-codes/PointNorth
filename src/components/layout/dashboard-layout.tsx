@@ -26,7 +26,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
     return (
         <div className="min-h-screen bg-gray-50 text-gray-900">
-            <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
+            <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
                 <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
                     {/* Logo */}
                     <Link href="/dashboard" className="flex items-center gap-3">
@@ -42,7 +42,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`text-sm font-medium transition hover:text-amber-600 ${pathname === link.href
+                                className={`text-sm font-medium transition active:text-amber-600 ${pathname === link.href
                                     ? "text-gray-900"
                                     : "text-gray-500"
                                     }`}
@@ -57,7 +57,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-gray-500 hover:text-gray-900"
+                            className="text-gray-500 active:text-gray-900"
                         >
                             <Bell className="h-5 w-5" />
                         </Button>
@@ -69,7 +69,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="text-gray-500 hover:text-gray-900 md:hidden"
+                                    className="text-gray-500 active:text-gray-900 md:hidden min-h-[44px] min-w-[44px]"
                                 >
                                     <Menu className="h-5 w-5" />
                                 </Button>
@@ -89,7 +89,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                         variant="ghost"
                                         size="icon"
                                         onClick={() => setMobileOpen(false)}
-                                        className="text-gray-500 hover:text-gray-900"
+                                        className="text-gray-500 active:text-gray-900 min-h-[44px] min-w-[44px]"
                                     >
                                         <X className="h-5 w-5" />
                                     </Button>
@@ -102,9 +102,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                                             onClick={() =>
                                                 setMobileOpen(false)
                                             }
-                                            className={`rounded-lg px-4 py-3 text-sm font-medium transition ${pathname === link.href
+                                            className={`rounded-lg px-4 py-3 min-h-[48px] flex items-center text-sm font-medium transition ${pathname === link.href
                                                 ? "bg-amber-50 text-amber-700"
-                                                : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                                                : "text-gray-500 active:bg-gray-50 active:text-gray-900"
                                                 }`}
                                         >
                                             {link.label}
