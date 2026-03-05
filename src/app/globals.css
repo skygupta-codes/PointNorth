@@ -120,8 +120,20 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    background-color: #ffffff;
   }
   body {
     @apply bg-background text-foreground;
+    padding-top: env(safe-area-inset-top);
   }
+}
+
+/* Bottom nav safe area */
+.bottom-nav {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 4px);
 }

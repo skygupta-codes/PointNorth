@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "cap:sync": "npx cap sync ios",
-    "cap:open": "npx cap open ios"
+    "ios": "pnpm cap open ios",
+    "cap:sync": "pnpm cap sync ios",
+    "cap:copy": "pnpm cap copy ios"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
@@ -16,6 +17,9 @@
     "@capacitor/haptics": "^8.0.1",
     "@capacitor/ios": "^8.1.0",
     "@capacitor/keyboard": "^8.0.1",
+    "@capacitor/push-notifications": "^8.0.1",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.1",
     "@clerk/nextjs": "^6.38.3",
     "@duffel/api": "^4.21.5",
     "@google/generative-ai": "^0.24.1",
