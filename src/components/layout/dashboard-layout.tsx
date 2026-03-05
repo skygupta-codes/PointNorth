@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserNav } from "@/components/auth/user-nav";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Bell, Menu, X } from "lucide-react";
+import { Bell } from "lucide-react";
+import { BottomNav } from "@/components/navigation/bottom-nav";
 
 const navLinks = [
     { href: "/dashboard", label: "Dashboard" },
@@ -22,7 +22,6 @@ const navLinks = [
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
-    const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -62,62 +61,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                             <Bell className="h-5 w-5" />
                         </Button>
                         <UserNav />
-
-                        {/* Mobile menu trigger */}
-                        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                            <SheetTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="text-gray-500 active:text-gray-900 md:hidden min-h-[44px] min-w-[44px]"
-                                >
-                                    <Menu className="h-5 w-5" />
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent
-                                side="right"
-                                className="w-72 border-gray-200 bg-white p-0"
-                            >
-                                <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xl">🍁</span>
-                                        <span className="font-bold text-gray-900">
-                                            TrueNorthPoints
-                                        </span>
-                                    </div>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => setMobileOpen(false)}
-                                        className="text-gray-500 active:text-gray-900 min-h-[44px] min-w-[44px]"
-                                    >
-                                        <X className="h-5 w-5" />
-                                    </Button>
-                                </div>
-                                <nav className="flex flex-col gap-1 p-4">
-                                    {navLinks.map((link) => (
-                                        <Link
-                                            key={link.href}
-                                            href={link.href}
-                                            onClick={() =>
-                                                setMobileOpen(false)
-                                            }
-                                            className={`rounded-lg px-4 py-3 min-h-[48px] flex items-center text-sm font-medium transition ${pathname === link.href
-                                                ? "bg-amber-50 text-amber-700"
-                                                : "text-gray-500 active:bg-gray-50 active:text-gray-900"
-                                                }`}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
-                                </nav>
-                            </SheetContent>
-                        </Sheet>
                     </div>
                 </div>
             </header>
 
-            <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
+            <main className="mx-auto max-w-7xl px-6 py-8 pb-[80px] md:pb-8">{children}</main>
+
+            <BottomNav />
         </div>
     );
 }
