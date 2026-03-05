@@ -138,7 +138,7 @@ export default function TravelPage() {
                     </p>
                     <button
                         onClick={() => router.push("/upgrade")}
-                        className="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white hover:bg-purple-700 transition-colors"
+                        className="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white active:bg-purple-700 transition-colors"
                     >
                         Upgrade to Pro
                     </button>

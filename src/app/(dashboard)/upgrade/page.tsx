@@ -172,8 +172,8 @@ export default function UpgradePage() {
                     const isLoading = loading === plan.id;
                     const colorMap: Record<string, { bg: string; text: string; border: string; button: string }> = {
                         gray: { bg: "bg-gray-50", text: "text-gray-600", border: "border-gray-200", button: "bg-gray-200 text-gray-500 cursor-default" },
-                        amber: { bg: "bg-amber-50", text: "text-amber-600", border: "border-amber-300", button: "bg-amber-500 text-white hover:bg-amber-600" },
-                        emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-300", button: "bg-emerald-600 text-white hover:bg-emerald-700" },
+                        amber: { bg: "bg-amber-50", text: "text-amber-600", border: "border-amber-300", button: "bg-amber-500 text-white active:bg-amber-600" },
+                        emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-300", button: "bg-emerald-600 text-white active:bg-emerald-700" },
                     };
                     const colors = colorMap[plan.color];
 
